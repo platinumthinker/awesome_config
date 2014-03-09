@@ -190,6 +190,7 @@ end
 
 -- Set keys
 require("bindings")
+require("userbind")
 root.keys(globalkeys)
 -- }}}
 
