@@ -1,5 +1,13 @@
 local awful = require("awful")
 
+command = table.concat(
+    {
+            "gmpc", 
+            "gvim", 
+            "pidgin",
+            "skype"
+    }, "\n") 
+
 -- {{{ Key bindings
 globalkeys = awful.util.table.join(globalkeys,
     awful.key({ modkey,         }, ",",   function () awful.util.spawn("xbacklight -10") end),
