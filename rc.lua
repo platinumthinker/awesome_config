@@ -5,6 +5,7 @@ require("awful.autofocus")
 require("beautiful")
 -- Notification library
 require("naughty")
+require("eminent")
 
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
@@ -33,7 +34,7 @@ end
 
 -- {{{ Variable definitions
 -- Themes define colours, icons, and wallpapers
-beautiful.init("/usr/share/awesome/themes/default/theme.lua")
+beautiful.init("/home/thinker/.config/awesome/themes/solarized/theme.lua")
 
 terminal = "lxterm"
 editor = os.getenv("EDITOR") or "editor"
