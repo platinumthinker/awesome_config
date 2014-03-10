@@ -5,7 +5,8 @@ require("awful.autofocus")
 require("beautiful")
 -- Notification library
 require("naughty")
-require("eminent.eminent")
+--Hide unused tags
+require("eminent/eminent")
 
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
