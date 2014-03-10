@@ -6,7 +6,7 @@ require("beautiful")
 -- Notification library
 require("naughty")
 --Hide unused tags
-require("eminent/eminent")
+require("eminent")
 
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
