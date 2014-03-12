@@ -16,7 +16,7 @@ vicious.register(batwidget, vicious.widgets.bat, "$1$2%:$3|", 120, "BAT0")
 
 --Create cpu usage widget
 cpuwidget = widget({ type = "textbox" })
-vicious.register(cpuwidget, vicious.widgets.cpu, "|$1%|", 60)
+vicious.register(cpuwidget, vicious.widgets.cpu, " |$1%|", 60)
 
 -- Create a wibox for each screen and add it
 mywibox = {}
@@ -83,7 +83,7 @@ for s = 1, screen.count() do
                                           end, mytasklist.buttons)
 
     -- Create the wibox
-    mywibox[s] = awful.wibox({ position = "top", screen = s })
+    mywibox[s] = awful.wibox({ position = "top", height = "12", screen = s })
     -- Add widgets to the wibox - order matters
     mywibox[s].widgets = {
         {
