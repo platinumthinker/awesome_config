@@ -1,9 +1,22 @@
+--Battery widget
+require("vicious")
+require("awful")
+
+
 -- {{{ Wibox
 -- Create a textclock widget
 mytextclock = awful.widget.textclock({ align = "right" })
 
 -- Create a systray
 mysystray = widget({ type = "systray" })
+
+--Create battery widget
+batwidget = widget({ type = "textbox" })
+vicious.register(batwidget, vicious.widgets.bat, "$1$2%:$3|", 120, "BAT0")
+
+--Create cpu usage widget
+cpuwidget = widget({ type = "textbox" })
+vicious.register(cpuwidget, vicious.widgets.cpu, "|$1%|", 60)
 
 -- Create a wibox for each screen and add it
 mywibox = {}
@@ -81,6 +94,8 @@ for s = 1, screen.count() do
         },
         mylayoutbox[s],
         mytextclock,
+        batwidget,
+        cpuwidget,
         s == 1 and mysystray or nil,
         mytasklist[s],
         layout = awful.widget.layout.horizontal.rightleft
