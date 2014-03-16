@@ -1,0 +1,3 @@
+[submodule "themes/awesome-solarized"]
+	path = themes/awesome-solarized
+	url = git@github.com:cycojesus/awesome-solarized.git

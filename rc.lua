@@ -8,6 +8,8 @@ require("naughty")
 --Hide unused tags
 require("modules/eminent")
 
+awful.util.spawn_with_shell("wmname LG3D")
+
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
 -- another config (This code will only ever execute for the fallback config)
@@ -35,7 +37,19 @@ end
 
 -- {{{ Variable definitions
 -- Themes define colours, icons, and wallpapers
-beautiful.init("/home/thinker/.config/awesome/themes/solarized/theme.lua")
+beautiful.init( awful.util.getdir("config") .. "/themes/awesome-solarized/dark/theme.lua" )
+theme.wallpapers_cmd = {}
+theme.font = "xdt:DejaVu Sans Mono for Powerline 8"
+-- Themes for notifications
+naughty.config.default_preset.font = beautiful.notify_font
+naughty.config.default_preset.fg = beautiful.notify_fg
+naughty.config.default_preset.bg = beautiful.notify_bg
+naughty.config.presets.normal.border_color = beautiful.notify_border
+naughty.config.presets.normal.opacity = 0.8
+naughty.config.presets.low.opacity = 0.8
+naughty.config.presets.critical.opacity = 0.8
+---}}}
+
 
 terminal = "lxterm"
 editor = os.getenv("EDITOR") or "editor"

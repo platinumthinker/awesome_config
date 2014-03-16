@@ -5,7 +5,7 @@
 ---------------------------------------------------------------------------
 
 local awful = require("awful")
-local textbox = require("wibox.widget.textbox")
+local textbox = require("awful.widget.textbox")
 local keygrabber = require("awful.keygrabber")
 local beautiful = require("beautiful")
 

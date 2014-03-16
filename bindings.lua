@@ -1,7 +1,10 @@
-local awful = require("awful")
+--local awful = require("awful")
+--For documentation
+--local keydoc = loadrc("keydoc", "modules/keydoc")
 
 -- {{{ Key bindings
 globalkeys = awful.util.table.join(
+    --keydoc.group("Change tag"),
     awful.key({ modkey,           }, "Left",   awful.tag.viewprev       ),
     awful.key({ modkey,           }, "Right",  awful.tag.viewnext       ),
     awful.key({ modkey,           }, "Escape", awful.tag.history.restore),
@@ -18,7 +21,6 @@ globalkeys = awful.util.table.join(
         end),
     awful.key({ modkey,           }, "w", function () mymainmenu:show({keygrabber=true}) end),
 
-    -- Layout manipulation
     awful.key({ modkey, "Shift"   }, "j", function () awful.client.swap.byidx(  1)    end),
     awful.key({ modkey, "Shift"   }, "k", function () awful.client.swap.byidx( -1)    end),
     awful.key({ modkey, "Control" }, "j", function () awful.screen.focus_relative( 1) end),
@@ -58,6 +60,7 @@ globalkeys = awful.util.table.join(
                   awful.util.eval, nil,
                   awful.util.getdir("cache") .. "/history_eval")
               end)
+    --,awful.key({ modkey,           }, "F1", keydoc.display)
 )
 
 clientkeys = awful.util.table.join(
