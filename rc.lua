@@ -40,6 +40,8 @@ end
 beautiful.init( awful.util.getdir("config") .. "/themes/awesome-solarized/dark/theme.lua" )
 theme.wallpapers_cmd = {}
 theme.font = "xdt:DejaVu Sans Mono for Powerline 8"
+theme.border_normal = theme.colors.base2
+theme.border_focus  = theme.colors.base1
 -- Themes for notifications
 naughty.config.default_preset.font = beautiful.notify_font
 naughty.config.default_preset.fg = beautiful.notify_fg
