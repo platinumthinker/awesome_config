@@ -1,0 +1,3 @@
+[submodule "modules/eminent"]
+	path = modules/eminent
+	url = git@github.com:guotsuan/eminent.git

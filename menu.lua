@@ -1,3 +1,4 @@
+local beautiful = require("beautiful")
 -- {{{ Menu
 -- Create a laucher widget and a main menu
 myawesomemenu = {
@@ -18,6 +19,15 @@ mymainmenu = awful.menu({ items = {
 }
 })
 
-mylauncher = awful.widget.launcher({ image = image(beautiful.awesome_icon),
-                                     menu = mymainmenu })
+mylauncher = awful.widget.launcher({
+    image = beautiful.awesome_icon,
+    menu = mymainmenu })
 -- }}}
+
+awful.menu.menu_keys = { up    = { "k", "Up" },
+                         down  = { "j", "Down" },
+                         exec  = { "l", "Return", "Right" },
+                         enter = { "Right" },
+                         back  = { "h", "Left" },
+                         close = { "q", "Escape" },
+                       }

@@ -1,4 +1,6 @@
-require("awful.rules")
+local awful = require("awful")
+awful.rules = require("awful.rules")
+local beautiful = require("beautiful")
 
 -- {{{ Rules
 awful.rules.rules = {
@@ -6,20 +8,19 @@ awful.rules.rules = {
     { rule = { },
       properties = { border_width = beautiful.border_width,
                      border_color = beautiful.border_normal,
-                     focus = true,
+                     focus = awful.client.focus.filter,
                      keys = clientkeys,
-                     buttons = clientbuttons } },
+                     buttons = none} },
     { rule = { class = "MPlayer" },
       properties = { floating = true } },
     { rule = { class = "pinentry" },
       properties = { floating = true } },
     { rule = { class = "gimp" },
       properties = { floating = true } },
+      -- For browser
     { rule = { class = "Iceweasel" },
       properties = { tag = tags[1][2] } },
-    --{ rule = { class = "Pidgin", role = "buddy_list"},
-      --properties = { tag = tags[1][1] }, 
-      --callback = awful.client.setnmaster},
+      -- For Pidgin
     { rule = { class = "Pidgin", role = "buddy_list" },
     properties = {switchtotag = true, floating=true,
                   maximized_vertical=true, maximized_horizontal=false },

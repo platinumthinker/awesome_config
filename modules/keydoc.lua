@@ -1,21 +1,21 @@
 -- Document key bindings
 
-local awful = require("awful")
-local table = table
-local ipairs = ipairs
-local pairs = pairs
-local math = math
-local string = string
-local type = type
-local modkey = modkey
+local awful     = require("awful")
+local table     = table
+local ipairs    = ipairs
+local pairs     = pairs
+local math      = math
+local string    = string
+local type      = type
+local modkey    = "Mod4"
 local beautiful = require("beautiful")
-local naughty = require("naughty")
-local capi = {
+local naughty   = require("naughty")
+local capi      = {
    root = root,
    client = client
 }
 
-module("lib/keydoc")
+module("modules/keydoc")
 
 local doc = { }
 local currentgroup = "Misc"
@@ -33,12 +33,12 @@ local function new(mod, key, press, release, docstring)
    -- Remember documentation for this key (we take the first one)
    if k and #k > 0 and docstring then
       doc[k[1]] = { help = docstring,
-group = currentgroup }
+            group = currentgroup }
    end
 
    return k
 end
-awful.key.new = new -- monkey patch
+awful.key.new = new     -- monkey patch
 
 -- Turn a key to a string
 local function key2str(key)
@@ -52,8 +52,8 @@ local function key2str(key)
    local result = ""
    local translate = {
       [modkey] = "⊞",
-      Shift = "⇧",
-      Control = "Ctrl",
+      Shift    = "⇧",
+      Control  = "Ctrl",
    }
    for _, mod in pairs(key.modifiers) do
       mod = translate[mod] or mod
@@ -82,20 +82,20 @@ local function markup(keys)
    local longest = 0
    for _, key in ipairs(keys) do
       if doc[key] then
-longest = math.max(longest, unilen(key2str(key)))
+     longest = math.max(longest, unilen(key2str(key)))
       end
    end
 
    local curgroup = nil
    for _, key in ipairs(keys) do
       if doc[key] then
-local help, group = doc[key].help, doc[key].group
-local skey = key2str(key)
-result[group] = (result[group] or "") ..
-'<span font="DejaVu Sans Mono 10" color="' .. beautiful.fg_widget_clock .. '"> ' ..
-string.format("%" .. (longest - unilen(skey)) .. "s ", "") .. skey ..
-'</span> <span color="' .. beautiful.fg_widget_value .. '">' ..
-help .. '</span>\n'
+     local help, group = doc[key].help, doc[key].group
+     local skey = key2str(key)
+     result[group] = (result[group] or "") ..
+        '<span font="DejaVu Sans Mono 10" color="' .. beautiful.fg_widget_clock .. '"> ' ..
+        string.format("%" .. (longest - unilen(skey)) .. "s  ", "") .. skey ..
+        '</span>  <span color="' .. beautiful.fg_widget_value .. '">' ..
+        help .. '</span>\n'
       end
    end
 
@@ -113,11 +113,11 @@ function display()
    for group, res in pairs(strings) do
       if #result > 0 then result = result .. "\n" end
       result = result ..
-'<span weight="bold" color="' .. beautiful.fg_widget_value_important .. '">' ..
-group .. "</span>\n" .. res
+     '<span weight="bold" color="' .. beautiful.fg_widget_value_important .. '">' ..
+     group .. "</span>\n" .. res
    end
    nid = naughty.notify({ text = result,
-replaces_id = nid,
-hover_timeout = 0.1,
-timeout = 20 }).id
+              replaces_id = nid,
+              hover_timeout = 0.1,
+              timeout = 30 }).id
 end
