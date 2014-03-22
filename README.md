@@ -1,28 +1,29 @@
-My beatufyl config for awesome wm.
+###My beatufyl config for awesome wm.
 
-Screenshots:
+##Screenshots:
 ![Screenshot1](https://db.tt/syN8qCTn)
 ![Screenshot2](https://db.tt/3pNMRBMo)
 
-Theme:
+##Theme:
  * dark solarized ( git://github.com/cycojesus/awesome-solarized.git )
 
-Using program:
+##Using program:
  * Terminal:        lxterm
  * IM:              pidgin
  * Browser:         iceweasel (with pentadactyl)
  * Backlight:       xbacklight
  * Menu:            dmenu from sucless tools
 
-GUI program:
+##GUI program:
 * file manager:     thunar
 * Menu:             xfce4-appfinder
 * Editor:           gvim
 * Pulse mixer:      pavucontrol
 
-Using shortcuts: Win key + another key
 
-Default shortcut:
+##Default shortcut
+Using shortcuts: Win key + another keys
+#Keys:
     w               -> Open menu
     Left, Right     -> Prev/Next tags,
     Esc             -> Prev history tags,
@@ -43,7 +44,7 @@ Default shortcut:
     Space           -> Next layout
     Shift Space     -> Prev layout
 
-Shortcut for focused client:
+#Shortcut for focused client:
     Ctrl Space      -> Toogle floating
     n               -> Minimize
     Ctrl n          -> Restore client (Undo minimaze)
@@ -54,12 +55,12 @@ Shortcut for focused client:
     t               -> Toogle ontop
     m               -> Toogle maximazed
 
-Tags:
+#Tags:
     Num(1..9)       -> Switch to tag
     Shift Num(1..9) -> Replace focused client to tag
     Ctrl Num(1..9)  -> Toogle view Num tag in current tag
 
-Program shortcut:
+#Program shortcut:
     ,.              -> Inc/Dec backlight (hight step)
     Shift ,.        -> Inc/Dec backlight (small step)
     a               -> GVim
