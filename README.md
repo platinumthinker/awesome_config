@@ -1,11 +1,18 @@
-#My beatufyl config for awesome wm.
+#My beatufyl config for awesome wm 3.5.
 
 ##Screenshots:
 ![Screenshot1](https://db.tt/syN8qCTn)
 ![Screenshot2](https://db.tt/3pNMRBMo)
 
-##Theme:
- * dark solarized ( git://github.com/cycojesus/awesome-solarized.git )
+##Visual settings:
+###AwesomeWM Theme:
+ * dark solarized (https://github.com/cycojesus/awesome-solarized)
+###GTK Theme and other settings:
+ * dark solarized (https://bitbucket.org/platinumthinker/dotfiles)
+###Vim Solarized theme:
+ * (https://github.com/altercation/vim-colors-solarized)
+###Font:
+ * DejaVu Sans Mono 
 
 ##Using program:
  * Terminal:        lxterm
