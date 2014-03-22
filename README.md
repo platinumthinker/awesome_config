@@ -6,11 +6,11 @@
 
 ##Visual settings:
 ###AwesomeWM Theme:
- * dark solarized (https://github.com/cycojesus/awesome-solarized)
+ * [Dark solarized](https://github.com/cycojesus/awesome-solarized)
 ###GTK Theme and other settings:
- * dark solarized (https://bitbucket.org/platinumthinker/dotfiles)
+ * [Dark solarized](https://bitbucket.org/platinumthinker/dotfiles)
 ###Vim Solarized theme:
- * (https://github.com/altercation/vim-colors-solarized)
+ * [Solarized](https://github.com/altercation/vim-colors-solarized)
 ###Font:
  * DejaVu Sans Mono 
 
