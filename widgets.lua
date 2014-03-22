@@ -13,7 +13,7 @@ mytextclock = awful.widget.textclock()
 
 -- Create battery widget
 batwidget = wibox.widget.textbox()
-vicious.register(batwidget, vicious.widgets.bat, "$1$2%:$3|", 120, "BAT0")
+vicious.register(batwidget, vicious.widgets.bat, "$1$2%:$3| ", 120, "BAT0")
 
 -- Create cpu usage widget
 cpuwidget = wibox.widget.textbox()
