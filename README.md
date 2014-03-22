@@ -52,20 +52,20 @@ Using shortcuts: Win key + another keys
     Shift Space     -> Prev layout
 
 ###Shortcut for focused client:
-    Ctrl Space      -> Toogle floating
+    Ctrl Space      -> Toggle floating
     n               -> Minimize
-    Ctrl n          -> Restore client (Undo minimaze)
-    f               -> Tuggle fullscreen
+    Ctrl n          -> Restore client (Undo minimize)
+    f               -> Toggle fullscreen
     Shift c         -> Kill focused client
     Ctrl Enter      -> Swap to master
     o               -> Send to next screen
-    t               -> Toogle ontop
-    m               -> Toogle maximazed
+    t               -> Toggle ontop
+    m               -> Toggle maximized
 
 ###Tags:
     Num(1..9)       -> Switch to tag
     Shift Num(1..9) -> Replace focused client to tag
-    Ctrl Num(1..9)  -> Toogle view Num tag in current tag
+    Ctrl Num(1..9)  -> Toggle view Num tag in current tag
 
 ###Program shortcut:
     ,.              -> Inc/Dec backlight (hight step)
