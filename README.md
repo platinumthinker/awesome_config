@@ -1,5 +1,9 @@
 My beatufyl config for awesome wm.
 
+Screenshots:
+![Screenshot1](https://db.tt/syN8qCTn)
+![Screenshot2](https://db.tt/3pNMRBMo)
+
 Theme:
  * dark solarized ( git://github.com/cycojesus/awesome-solarized.git )
 
@@ -64,4 +68,3 @@ Program shortcut:
     g               -> Thunar (file manager)
     i               -> Iceweasel (internet browser)
     p               -> Xfce-appfinder (GUI menu)
-
