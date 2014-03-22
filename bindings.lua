@@ -46,8 +46,6 @@ globalkeys = awful.util.table.join(
 
     awful.key({ modkey, "Control" }, "n", awful.client.restore),
 
-    awful.key({ modkey },            "r",     function () mypromptbox[mouse.screen]:run() end),
-
     awful.key({ modkey }, "x",
               function ()
                   awful.prompt.run({ prompt = "Run Lua code: " },
@@ -90,14 +88,6 @@ for i = 1, 9 do
                            awful.tag.viewonly(tag)
                         end
                   end),
-        awful.key({ modkey, "Control" }, "#" .. i + 9,
-                  function ()
-                      local screen = mouse.screen
-                      local tag = awful.tag.gettags(screen)[i]
-                      if tag then
-                         awful.tag.viewtoggle(tag)
-                      end
-                  end),
         awful.key({ modkey, "Shift" }, "#" .. i + 9,
                   function ()
                       if client.focus then
@@ -107,7 +97,7 @@ for i = 1, 9 do
                           end
                      end
                   end),
-        awful.key({ modkey, "Control", "Shift" }, "#" .. i + 9,
+        awful.key({ modkey, "Control" }, "#" .. i + 9,
                   function ()
                       if client.focus then
                           local tag = awful.tag.gettags(client.focus.screen)[i]
