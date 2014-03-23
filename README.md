@@ -73,6 +73,7 @@ Using shortcuts: Win key + another keys
     a               -> GVim
     s               -> Pavucontrol (sound mixer)
     d               -> Dmenu (programm menu)
+    Shift d         -> My Dmenu (custom program list)
     g               -> Thunar (file manager)
     i               -> Iceweasel (internet browser)
     p               -> Xfce-appfinder (GUI menu)
