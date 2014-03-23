@@ -4,10 +4,12 @@ command = table.concat(
     {
             "gmpc", 
             "gvim", 
+            "sylpheed",
             "pidgin",
             "skype"
-    }, "\n") 
-
+    }, " ") 
+dmenu = "dmenu_run -fn 'DejaVu Mono-10:normal' -nb '#002b36' -nf\
+    '#657b83' -sb '#002b36' -sf '#fdce59'"
 -- {{{ Key bindings
 globalkeys = awful.util.table.join(globalkeys,
     awful.key({ modkey,         }, ",",
@@ -23,7 +25,12 @@ globalkeys = awful.util.table.join(globalkeys,
     awful.key({ modkey,         }, "i",
         function () awful.util.spawn("iceweasel") end),
     awful.key({ modkey,         }, "d",
-        function () awful.util.spawn("dmenu_run") end),
+        function () awful.util.spawn(dmenu) end),
+    awful.key({ modkey, "Shift" }, "d",
+        function () 
+            awful.util.spawn(awful.util.getdir("config") ..
+                "/scripts/dmenu.sh " .. command) 
+        end),
     awful.key({ modkey,         }, "p",
         function () awful.util.spawn("xfce4-appfinder") end),
     awful.key({ modkey,         }, "s",
@@ -32,3 +39,4 @@ globalkeys = awful.util.table.join(globalkeys,
         function () awful.util.spawn("gvim") end)
 )
 
+--musicwidget:append_global_keys()

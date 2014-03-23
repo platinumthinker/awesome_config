@@ -1,3 +1,6 @@
 [submodule "modules/eminent"]
 	path = modules/eminent
 	url = git@github.com:guotsuan/eminent.git
+[submodule "modules/awesompd"]
+	path = modules/awesompd
+	url = git@github.com:alexander-yakushev/awesompd.git
