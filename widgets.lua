@@ -10,13 +10,15 @@ mytextclock = awful.widget.textclock({ align = "right" })
 -- Create a systray
 mysystray = widget({ type = "systray" })
 
--- Create battery widget
-batwidget = widget({ type = "textbox" })
-vicious.register(batwidget, vicious.widgets.bat, "$1$2%:$3|", 120, "BAT0")
-
 -- Create cpu usage widget
 cpuwidget = widget({ type = "textbox" })
-vicious.register(cpuwidget, vicious.widgets.cpu, " |$1%|", 60)
+vicious.cache(vicious.widgets.cpu)
+vicious.register(cpuwidget, vicious.widgets.cpu, " |$1%|", 10)
+
+-- Create mem usage widget
+memwidget = widget({ type = "textbox" })
+vicious.cache(vicious.widgets.mem)
+vicious.register(memwidget, vicious.widgets.mem, "|$1% ($2Mb/$3Mb)", 10)
 
 -- Create dmenu for my favorite programm
 --dmenu_favorite = dmenu({
@@ -103,8 +105,8 @@ for s = 1, screen.count() do
         },
         mylayoutbox[s],
         mytextclock,
-        batwidget,
         cpuwidget,
+        memwidget,
         s == 1 and mysystray or nil,
         mytasklist[s],
         layout = awful.widget.layout.horizontal.rightleft

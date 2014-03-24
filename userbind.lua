@@ -18,6 +18,7 @@ globalkeys = awful.util.table.join(globalkeys,
     awful.key({ modkey,         }, "i",   function () awful.util.spawn("iceweasel") end),
     awful.key({ modkey,         }, "d",   function () awful.util.spawn("dmenu_run") end),
     awful.key({ modkey,         }, "s",   function () awful.util.spawn("pavucontrol") end),
-    awful.key({ modkey,         }, "a",   function () awful.util.spawn("gvim") end)
+    awful.key({ modkey,         }, "a",   function () awful.util.spawn("gvim") end),
+    awful.key({ modkey, "Ctrl"  }, "l",   function () awful.util.spawn("xscreensaver-command -lock") end)
     --awful.key({ modkey, "Shift" }, "d",   function () dmenu_favorite:show() end)
 )
