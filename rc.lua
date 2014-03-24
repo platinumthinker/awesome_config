@@ -2,13 +2,32 @@
 awful = require("awful")
 require("awful.autofocus")
 -- Theme handling library
-require("beautiful")
+local beautiful = require("beautiful")
 -- Notification library
-require("naughty")
+local naughty = require("naughty")
 --Hide unused tags
-require("modules/eminent")
+require("modules.eminent.eminent")
 
 awful.util.spawn_with_shell("wmname LG3D")
+
+-- Volume widget logic
+cardid  = 0
+channel = "Master"
+function volume (mode, widget)
+    if mode == "up" then
+        io.popen("amixer -q -c " .. cardid .. " sset " .. 
+            channel .. " 5%+"):read("*all")
+        vicious.force({ widget })
+    elseif mode == "down" then
+        io.popen("amixer -q -c " .. cardid .. " sset " .. 
+            channel .. " 5%-"):read("*all")
+        vicious.force({ widget })
+    else
+        io.popen("amixer -c " .. cardid .. " sset " .. 
+            channel .. " toggle"):read("*all")
+        vicious.force({ widget })
+    end
+end
 
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
@@ -22,7 +41,7 @@ end
 -- Handle runtime errors after startup
 do
     local in_error = false
-    awesome.add_signal("debug::error", function (err)
+    awesome.connect_signal("debug::error", function (err)
         -- Make sure we don't go into an endless error loop
         if in_error then return end
         in_error = true
@@ -37,22 +56,10 @@ end
 
 -- {{{ Variable definitions
 -- Themes define colours, icons, and wallpapers
---beautiful.init( awful.util.getdir("config") .. "/themes/awesome-solarized/dark/theme.lua" )
-beautiful.init("/usr/share/awesome/themes/zenburn/theme.lua")
-theme.wallpapers_cmd = {""}
-theme.font = "xdt:DejaVu Sans Mono for Powerline 8"
---theme.border_normal = theme.colors.base2
---theme.border_focus  = theme.colors.base1
--- Themes for notifications
-naughty.config.default_preset.font = beautiful.notify_font
-naughty.config.default_preset.fg = beautiful.notify_fg
-naughty.config.default_preset.bg = beautiful.notify_bg
-naughty.config.presets.normal.border_color = beautiful.notify_border
-naughty.config.presets.normal.opacity = 0.8
-naughty.config.presets.low.opacity = 0.8
-naughty.config.presets.critical.opacity = 0.8
----}}}
-
+beautiful.init( awful.util.getdir("config") ..
+    "/themes/awesome-solarized/theme.lua" )
+--Disable icon in task list
+theme.tasklist_disable_icon = true
 
 terminal = "lxterm"
 editor = os.getenv("EDITOR") or "editor"
@@ -66,7 +73,6 @@ require("widgets")
 
 -- Set keys
 require("bindings")
-require("userbind")
 root.keys(globalkeys)
 -- }}}
 
@@ -74,12 +80,9 @@ require("rules")
 
 -- {{{ Signals
 -- Signal function to execute when a new client appears.
-client.add_signal("manage", function (c, startup)
-    -- Add a titlebar
-    -- awful.titlebar.add(c, { modkey = modkey })
-
+client.connect_signal("manage", function (c, startup)
     -- Enable sloppy focus
-    c:add_signal("mouse::enter", function(c)
+    c:connect_signal("mouse::enter", function(c)
         if awful.layout.get(c.screen) ~= awful.layout.suit.magnifier
             and awful.client.focus.filter(c) then
             client.focus = c
@@ -92,13 +95,62 @@ client.add_signal("manage", function (c, startup)
         -- awful.client.setslave(c)
 
         -- Put windows in a smart way, only if they does not set an initial position.
-        if not c.size_hints.user_position and not c.size_hints.program_position then
+        if not c.size_hints.user_position and not 
+                c.size_hints.program_position then
             awful.placement.no_overlap(c)
             awful.placement.no_offscreen(c)
         end
     end
+
+
+    local titlebars_enabled = false
+    if titlebars_enabled and (c.type == "normal" or c.type == "dialog") then
+        -- buttons for the titlebar
+        local buttons = awful.util.table.join(
+                awful.button({ }, 1, function()
+                    client.focus = c
+                    c:raise()
+                    awful.mouse.client.move(c)
+                end),
+                awful.button({ }, 3, function()
+                    client.focus = c
+                    c:raise()
+                    awful.mouse.client.resize(c)
+                end)
+                )
+
+        -- Widgets that are aligned to the left
+        local left_layout = wibox.layout.fixed.horizontal()
+        left_layout:add(awful.titlebar.widget.iconwidget(c))
+        left_layout:buttons(buttons)
+
+        -- Widgets that are aligned to the right
+        local right_layout = wibox.layout.fixed.horizontal()
+        right_layout:add(awful.titlebar.widget.floatingbutton(c))
+        right_layout:add(awful.titlebar.widget.maximizedbutton(c))
+        right_layout:add(awful.titlebar.widget.stickybutton(c))
+        right_layout:add(awful.titlebar.widget.ontopbutton(c))
+        right_layout:add(awful.titlebar.widget.closebutton(c))
+
+        -- The title goes in the middle
+        local middle_layout = wibox.layout.flex.horizontal()
+        local title = awful.titlebar.widget.titlewidget(c)
+        title:set_align("center")
+        middle_layout:add(title)
+        middle_layout:buttons(buttons)
+
+        -- Now bring it all together
+        local layout = wibox.layout.align.horizontal()
+        layout:set_left(left_layout)
+        layout:set_right(right_layout)
+        layout:set_middle(middle_layout)
+
+        awful.titlebar(c):set_widget(layout)
+    end
 end)
 
-client.add_signal("focus", function(c) c.border_color = beautiful.border_focus end)
-client.add_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
+client.connect_signal("focus", 
+    function(c) c.border_color = beautiful.border_focus end)
+client.connect_signal("unfocus", 
+    function(c) c.border_color = beautiful.border_normal end)
 -- }}}

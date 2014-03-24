@@ -4,21 +4,38 @@ command = table.concat(
     {
             "gmpc", 
             "gvim", 
+            "sylpheed",
             "pidgin",
             "skype"
-    }, "\n") 
-
+    }, " ") 
+dmenu = "dmenu_run -fn 'DejaVu Mono-10:normal' -nb '#002b36' -nf\
+    '#657b83' -sb '#002b36' -sf '#fdce59'"
 -- {{{ Key bindings
 globalkeys = awful.util.table.join(globalkeys,
-    awful.key({ modkey,         }, ",",   function () awful.util.spawn("xbacklight -10") end),
-    awful.key({ modkey,         }, ".",   function () awful.util.spawn("xbacklight +10") end),
-    awful.key({ modkey, "Shift" }, ",",   function () awful.util.spawn("xbacklight -2") end),
-    awful.key({ modkey, "Shift" }, ".",   function () awful.util.spawn("xbacklight +2") end),
-    awful.key({ modkey,         }, "g",   function () awful.util.spawn("thunar") end),
-    awful.key({ modkey,         }, "i",   function () awful.util.spawn("iceweasel") end),
-    awful.key({ modkey,         }, "d",   function () awful.util.spawn("dmenu_run") end),
-    awful.key({ modkey,         }, "s",   function () awful.util.spawn("pavucontrol") end),
-    awful.key({ modkey,         }, "a",   function () awful.util.spawn("gvim") end),
+    awful.key({ modkey,         }, ",",
+        function () awful.util.spawn("xbacklight -10") end),
+    awful.key({ modkey,         }, ".",
+        function () awful.util.spawn("xbacklight +10") end),
+    awful.key({ modkey, "Shift" }, ",",
+        function () awful.util.spawn("xbacklight -2") end),
+    awful.key({ modkey, "Shift" }, ".",
+        function () awful.util.spawn("xbacklight +2") end),
+    awful.key({ modkey,         }, "g",
+        function () awful.util.spawn("thunar") end),
+    awful.key({ modkey,         }, "i",
+        function () awful.util.spawn("iceweasel") end),
+    awful.key({ modkey,         }, "d",
+        function () awful.util.spawn(dmenu) end),
+    awful.key({ modkey, "Shift" }, "d",
+        function () 
+            awful.util.spawn(awful.util.getdir("config") ..
+                "/scripts/dmenu.sh " .. command) 
+        end),
+    awful.key({ modkey,         }, "p",
+        function () awful.util.spawn("xfce4-appfinder") end),
+    awful.key({ modkey,         }, "s",
+        function () awful.util.spawn("pavucontrol") end),
+    awful.key({ modkey,         }, "a",
+        function () awful.util.spawn("gvim") end),
     awful.key({ modkey, "Ctrl"  }, "l",   function () awful.util.spawn("xscreensaver-command -lock") end)
-    --awful.key({ modkey, "Shift" }, "d",   function () dmenu_favorite:show() end)
 )
