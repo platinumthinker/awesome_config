@@ -27,7 +27,7 @@ tags = {
               "4:code",
               "5:myc",
               "6:ds",
-              "7:doc",
+              "7:cocon",
               "8:music",
               "9:cal" },
    layout = { awful.layout.suit.fair, -- 1)
