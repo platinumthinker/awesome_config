@@ -10,25 +10,6 @@ require("modules.eminent.eminent")
 
 awful.util.spawn_with_shell("wmname LG3D")
 
--- Volume widget logic
-cardid  = 0
-channel = "Master"
-function volume (mode, widget)
-    if mode == "up" then
-        io.popen("amixer -q -c " .. cardid .. " sset " .. 
-            channel .. " 5%+"):read("*all")
-        vicious.force({ widget })
-    elseif mode == "down" then
-        io.popen("amixer -q -c " .. cardid .. " sset " .. 
-            channel .. " 5%-"):read("*all")
-        vicious.force({ widget })
-    else
-        io.popen("amixer -c " .. cardid .. " sset " .. 
-            channel .. " toggle"):read("*all")
-        vicious.force({ widget })
-    end
-end
-
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
 -- another config (This code will only ever execute for the fallback config)
@@ -81,6 +62,8 @@ require("rules")
 -- {{{ Signals
 -- Signal function to execute when a new client appears.
 client.connect_signal("manage", function (c, startup)
+    -- Remove gaps
+    c.size_hints_honor = false
     -- Enable sloppy focus
     c:connect_signal("mouse::enter", function(c)
         if awful.layout.get(c.screen) ~= awful.layout.suit.magnifier

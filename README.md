@@ -61,6 +61,11 @@ Using shortcuts: Win key + another keys
     o               -> Send to next screen
     t               -> Toggle ontop
     m               -> Toggle maximized
+    
+###Shortcut for focused floating client:
+    PgUp,PgDn       -> Resize by vertical (Inc/Dec)
+    Home,End        -> Resize by horizontal (Inc/Dec)
+    Shift Arrow     -> Replace by direction Left/Right/Up/Down
 
 ###Tags:
     Num(1..9)       -> Switch to tag
