@@ -69,11 +69,11 @@ mytextclock = awful.widget.textclock()
 -- Create mem usage widget
 memwidget = wibox.widget.textbox()
 vicious.cache(vicious.widgets.mem)
-vicious.register(memwidget, vicious.widgets.mem, "|$1% ($2Mb/$3Mb)", 10)
+vicious.register(memwidget, vicious.widgets.mem, "|$1% ($2Mb/$3Mb)", 5)
 
 -- Create cpu usage widget
 cpuwidget = wibox.widget.textbox()
-vicious.register(cpuwidget, vicious.widgets.cpu, " |$1%|", 60)
+vicious.register(cpuwidget, vicious.widgets.cpu, " |$1%|", 5)
 
 -- Create a wibox for each screen and add it
 mywibox     = {}
