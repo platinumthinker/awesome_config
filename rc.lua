@@ -5,6 +5,8 @@ require("awful.autofocus")
 local beautiful = require("beautiful")
 -- Notification library
 local naughty = require("naughty")
+--Dunamic tagging
+--local shifty = require("modules.shifty")
 --Hide unused tags
 require("modules.eminent.eminent")
 

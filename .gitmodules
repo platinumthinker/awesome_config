@@ -1,3 +1,6 @@
 [submodule "modules/eminent"]
 	path = modules/eminent
 	url = git@github.com:guotsuan/eminent.git
+[submodule "modules/shifty"]
+	path = modules/shifty
+	url = git://github.com/cdump/awesome-shifty
