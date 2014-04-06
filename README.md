@@ -26,6 +26,7 @@
 * Menu:             xfce4-appfinder
 * Editor:           gvim
 * Pulse mixer:      pavucontrol
+* xfsettingsd
 
 
 ##Default shortcut

@@ -12,6 +12,7 @@ local naughty = require("naughty")
 require("modules.eminent.eminent")
 
 awful.util.spawn_with_shell("wmname LG3D")
+awful.util.spawn_with_shell("xfsettingsd")
 
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
