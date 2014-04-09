@@ -66,14 +66,18 @@ local capi = { screen = screen,
 -- Create a textclock widget
 mytextclock = awful.widget.textclock()
 
+-- Create battery widget
+batwidget = wibox.widget.textbox()
+vicious.register(batwidget, vicious.widgets.bat, "| $1$2%:$3 ", 120, "BAT0")
+
 -- Create mem usage widget
 memwidget = wibox.widget.textbox()
 vicious.cache(vicious.widgets.mem)
-vicious.register(memwidget, vicious.widgets.mem, "|$1% ($2Mb/$3Mb)", 5)
+vicious.register(memwidget, vicious.widgets.mem, " $1% ($2Mb/$3Mb) ", 5)
 
 -- Create cpu usage widget
 cpuwidget = wibox.widget.textbox()
-vicious.register(cpuwidget, vicious.widgets.cpu, " |$1%|", 5)
+vicious.register(cpuwidget, vicious.widgets.cpu, " $1% |", 5)
 
 -- Create a wibox for each screen and add it
 mywibox     = {}
@@ -112,8 +116,9 @@ for s = 1, screen.count() do
 
     -- Widgets that are aligned to the right
     local right_layout = wibox.layout.fixed.horizontal()
-    right_layout:add(memwidget)
     right_layout:add(cpuwidget)
+    right_layout:add(memwidget)
+    right_layout:add(batwidget)
     --right_layout:add(musicwidget.widget)
     if s == 1 then right_layout:add(wibox.widget.systray()) end
     right_layout:add(mytextclock)
