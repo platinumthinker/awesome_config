@@ -23,13 +23,13 @@ layouts =
 tags = {
    names  = { "1:im", 
               "2:www",
-              "3:code",
-              "4:code",
-              "5:myc",
-              "6:ds",
-              "7:cocon",
-              "8:music",
-              "9:cal" },
+              "3",
+              "4",
+              "5",
+              "6",
+              "7",
+              "8",
+              "9" },
    layout = { awful.layout.suit.fair, -- 1)
               awful.layout.suit.tile, -- 2)
               awful.layout.suit.tile, -- 3)
