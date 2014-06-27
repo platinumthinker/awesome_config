@@ -4,6 +4,11 @@
 ![Screenshot1](https://db.tt/syN8qCTn)
 ![Screenshot2](https://db.tt/3pNMRBMo)
 
+##Install
+Clone this repo:
+    git clone git@bitbucket.org:platinumthinker/awesomeconfig.git ~/.config/awesome
+Update submodule:
+    git submodule update --init modules/eminent
 ##Visual settings:
 ###AwesomeWM Theme:
  * [Dark solarized](https://github.com/cycojesus/awesome-solarized)
@@ -12,7 +17,7 @@
 ###Vim Solarized theme:
  * [Solarized](https://github.com/altercation/vim-colors-solarized)
 ###Font:
- * DejaVu Sans Mono 
+ * DejaVu Sans Mono
 
 ##Using program:
  * Terminal:        lxterm
