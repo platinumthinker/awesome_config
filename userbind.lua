@@ -12,18 +12,10 @@ dmenu = "dmenu_run -fn 'DejaVu Mono-10:normal' -nb '#002b36' -nf\
     '#657b83' -sb '#002b36' -sf '#fdce59'"
 -- {{{ Key bindings
 globalkeys = awful.util.table.join(globalkeys,
-    awful.key({ modkey,         }, ",",
-        function () awful.util.spawn("xbacklight -10") end),
-    awful.key({ modkey,         }, ".",
-        function () awful.util.spawn("xbacklight +10") end),
-    awful.key({ modkey, "Shift" }, ",",
-        function () awful.util.spawn("xbacklight -2") end),
-    awful.key({ modkey, "Shift" }, ".",
-        function () awful.util.spawn("xbacklight +2") end),
     awful.key({ modkey,         }, "g",
         function () awful.util.spawn("thunar") end),
     awful.key({ modkey,         }, "i",
-        function () awful.util.spawn("iceweasel") end),
+        function () awful.util.spawn("x-www-browser") end),
     awful.key({ modkey,         }, "d",
         function () awful.util.spawn(dmenu) end),
     awful.key({ modkey, "Shift" }, "d",
@@ -40,3 +32,4 @@ globalkeys = awful.util.table.join(globalkeys,
     awful.key({ modkey,         }, "b", 
         function () awful.util.spawn("slock") end)
 )
+-- }}}

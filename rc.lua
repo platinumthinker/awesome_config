@@ -5,10 +5,14 @@ require("awful.autofocus")
 local beautiful = require("beautiful")
 -- Notification library
 local naughty = require("naughty")
+local naughty = require("naughty")
+--Dunamic tagging
+--local shifty = require("modules.shifty")
 --Hide unused tags
 require("modules.eminent.eminent")
 
 awful.util.spawn_with_shell("wmname LG3D")
+awful.util.spawn_with_shell("xfsettingsd")
 
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
@@ -41,6 +45,22 @@ beautiful.init( awful.util.getdir("config") ..
     "/themes/awesome-solarized/theme.lua" )
 --Disable icon in task list
 theme.tasklist_disable_icon = true
+
+-- Themes for notifications
+naughty.config.defaults.timeout          = 5
+naughty.config.defaults.screen           = 1
+naughty.config.defaults.position         = "top_right"
+naughty.config.defaults.margin           = 4
+naughty.config.defaults.gap              = 1
+naughty.config.defaults.ontop            = true
+naughty.config.defaults.font             = beautiful.font
+naughty.config.defaults.icon             = nil
+naughty.config.defaults.icon_size        = 16
+naughty.config.defaults.fg               = beautiful.fg_focus
+naughty.config.defaults.bg               = beautiful.bg_focus
+naughty.config.defaults.border_color     = "#cb4b16ff"
+naughty.config.defaults.border_width     = 2
+naughty.config.defaults.hover_timeout    = 5
 
 terminal = "lxterm"
 editor = os.getenv("EDITOR") or "editor"
