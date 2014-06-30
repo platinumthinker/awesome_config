@@ -5,14 +5,18 @@ require("awful.autofocus")
 local beautiful = require("beautiful")
 -- Notification library
 local naughty = require("naughty")
-local naughty = require("naughty")
 --Dunamic tagging
 --local shifty = require("modules.shifty")
 --Hide unused tags
 require("modules.eminent.eminent")
 
 awful.util.spawn_with_shell("wmname LG3D")
+awful.util.spawn_with_shell("xrdb /home/thinker/.Xdefaults")
 awful.util.spawn_with_shell("xfsettingsd")
+awful.util.spawn_with_shell("nm-applet")
+awful.util.spawn_with_shell("clipit")
+awful.util.spawn_with_shell("dropbox start")
+awful.util.spawn_with_shell("workrave")
 
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
@@ -47,7 +51,7 @@ beautiful.init( awful.util.getdir("config") ..
 theme.tasklist_disable_icon = true
 
 -- Themes for notifications
-naughty.config.defaults.timeout          = 5
+naughty.config.defaults.timeout          = 15
 naughty.config.defaults.screen           = 1
 naughty.config.defaults.position         = "top_right"
 naughty.config.defaults.margin           = 4
