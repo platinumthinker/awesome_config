@@ -10,14 +10,6 @@ local naughty = require("naughty")
 --Hide unused tags
 require("modules.eminent.eminent")
 
-awful.util.spawn_with_shell("wmname LG3D")
-awful.util.spawn_with_shell("xrdb /home/thinker/.Xdefaults")
-awful.util.spawn_with_shell("xfsettingsd")
-awful.util.spawn_with_shell("nm-applet")
-awful.util.spawn_with_shell("clipit")
-awful.util.spawn_with_shell("dropbox start")
-awful.util.spawn_with_shell("workrave")
-
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
 -- another config (This code will only ever execute for the fallback config)
@@ -160,4 +152,16 @@ client.connect_signal("focus",
     function(c) c.border_color = beautiful.border_focus end)
 client.connect_signal("unfocus", 
     function(c) c.border_color = beautiful.border_normal end)
+-- }}}
+-- Startup program
+-- {{{
+
+awful.util.spawn_with_shell("wmname LG3D")
+awful.util.spawn_with_shell("xfsettingsd")
+awful.util.spawn_with_shell("~/scripts/wal.sh")
+awful.util.spawn_with_shell("nm-applet")
+awful.util.spawn_with_shell("clipit")
+awful.util.spawn_with_shell("dropbox start")
+awful.util.spawn_with_shell("workrave")
+
 -- }}}
