@@ -6,17 +6,17 @@ local beautiful = require("beautiful")
 -- Notification library
 local naughty = require("naughty")
 --Dunamic tagging
---local shifty = require("modules.shifty")
+shifty = require("modules.shifty")
 --Hide unused tags
 require("modules.eminent.eminent")
 
-awful.util.spawn_with_shell("wmname LG3D")
-awful.util.spawn_with_shell("xrdb /home/thinker/.Xdefaults")
-awful.util.spawn_with_shell("xfsettingsd")
-awful.util.spawn_with_shell("nm-applet")
-awful.util.spawn_with_shell("clipit")
-awful.util.spawn_with_shell("dropbox start")
-awful.util.spawn_with_shell("workrave")
+--awful.util.spawn_with_shell("wmname LG3D")
+--awful.util.spawn_with_shell("xrdb /home/thinker/.Xdefaults")
+--awful.util.spawn_with_shell("xfsettingsd")
+--awful.util.spawn_with_shell("nm-applet")
+--awful.util.spawn_with_shell("clipit")
+--awful.util.spawn_with_shell("dropbox start")
+--awful.util.spawn_with_shell("workrave")
 
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
@@ -81,7 +81,7 @@ require("bindings")
 root.keys(globalkeys)
 -- }}}
 
-require("rules")
+--require("rules")
 
 -- {{{ Signals
 -- Signal function to execute when a new client appears.
