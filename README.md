@@ -5,10 +5,11 @@
 ![Screenshot2](https://dl.dropboxusercontent.com/u/25179463/screen/For%20README%20in%20git/awesome/2.png)
 
 ##Install
- * Clone this repo:
+###Clone this repo:
 > git clone git@bitbucket.org:platinumthinker/awesomeconfig.git ~/.config/awesome
- * Update submodule:
+###Update submodule:
 > git submodule update --init modules/eminent
+
 ##Visual settings:
 ###AwesomeWM Theme:
  * [Dark solarized](https://github.com/cycojesus/awesome-solarized)
