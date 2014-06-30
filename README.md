@@ -22,10 +22,11 @@
  * Menu:            dmenu from sucless tools
 
 ##GUI program:
-* file manager:     thunar
+* File manager:     thunar
 * Menu:             xfce4-appfinder
 * Editor:           gvim
 * Pulse mixer:      pavucontrol
+* Block X:          slock from sucless tools
 
 
 ##Default shortcut
@@ -82,3 +83,4 @@ Using shortcuts: Win key + another keys
     g               -> Thunar (file manager)
     i               -> Iceweasel (internet browser)
     p               -> Xfce-appfinder (GUI menu)
+    b               -> slock (block X)

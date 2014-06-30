@@ -37,5 +37,6 @@ globalkeys = awful.util.table.join(globalkeys,
         function () awful.util.spawn("pavucontrol") end),
     awful.key({ modkey,         }, "a",
         function () awful.util.spawn("gvim") end),
-    awful.key({ modkey, "Ctrl"  }, "l",   function () awful.util.spawn("xscreensaver-command -lock") end)
+    awful.key({ modkey,         }, "b", 
+        function () awful.util.spawn("slock") end)
 )
