@@ -159,9 +159,6 @@ client.connect_signal("unfocus",
 awful.util.spawn_with_shell("wmname LG3D")
 awful.util.spawn_with_shell("xfsettingsd")
 awful.util.spawn_with_shell("~/scripts/wal.sh")
-awful.util.spawn_with_shell("nm-applet")
-awful.util.spawn_with_shell("clipit")
-awful.util.spawn_with_shell("dropbox start")
-awful.util.spawn_with_shell("workrave")
+awful.util.spawn_with_shell("~/scripts/autorun.sh")
 
 -- }}}
