@@ -2,14 +2,15 @@ local awful = require("awful")
 
 command = table.concat(
     {
-            "gmpc", 
-            "gvim", 
-            "sylpheed",
-            "pidgin",
-            "skype"
-    }, " ") 
+            "gmpc",
+            "gvim",
+            "claws-mail",
+            "pidgin"
+    }, " ")
+
 dmenu = "dmenu_run -fn 'DejaVu Mono-10:normal' -nb '#002b36' -nf\
     '#657b83' -sb '#002b36' -sf '#fdce59'"
+
 -- {{{ Key bindings
 globalkeys = awful.util.table.join(globalkeys,
     awful.key({ modkey,         }, "g",
@@ -19,9 +20,9 @@ globalkeys = awful.util.table.join(globalkeys,
     awful.key({ modkey,         }, "d",
         function () awful.util.spawn(dmenu) end),
     awful.key({ modkey, "Shift" }, "d",
-        function () 
+        function ()
             awful.util.spawn(awful.util.getdir("config") ..
-                "/scripts/dmenu.sh " .. command) 
+                "/scripts/dmenu.sh " .. command)
         end),
     awful.key({ modkey,         }, "p",
         function () awful.util.spawn("xfce4-appfinder") end),
@@ -29,7 +30,7 @@ globalkeys = awful.util.table.join(globalkeys,
         function () awful.util.spawn("pavucontrol") end),
     awful.key({ modkey,         }, "a",
         function () awful.util.spawn("gvim") end),
-    awful.key({ modkey,         }, "b", 
-        function () awful.util.spawn("slock") end)
+    awful.key({ modkey,         }, "b",
+        function () awful.util.spawn("./scripts/lock.sh") end)
 )
 -- }}}

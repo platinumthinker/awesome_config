@@ -16,7 +16,7 @@ globalkeys = awful.util.table.join(
             awful.client.focus.byidx(-1)
             if client.focus then client.focus:raise() end
         end),
-    awful.key({ modkey,           }, "w", 
+    awful.key({ modkey,           }, "w",
         function () mymainmenu:show({keygrabber=true}) end),
 
     awful.key({ modkey, "Shift"   }, "j",
@@ -95,7 +95,7 @@ clientkeys = awful.util.table.join(
     awful.key({ modkey, "Control" }, "Return",
         function (c) c:swap(awful.client.getmaster()) end),
     awful.key({ modkey,           }, "o", awful.client.movetoscreen),
-    awful.key({ modkey,           }, "t", 
+    awful.key({ modkey,           }, "t",
         function (c) c.ontop = not c.ontop            end),
     awful.key({ modkey,           }, "n",
         function (c)
@@ -147,5 +147,5 @@ clientbuttons = awful.util.table.join(
     awful.button({ }, 1, function (c) client.focus = c; c:raise() end),
     awful.button({ modkey }, 1, awful.mouse.client.move),
     awful.button({ modkey }, 3, awful.mouse.client.resize))
-    
+
 require("userbind")
