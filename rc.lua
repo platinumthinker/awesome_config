@@ -58,8 +58,8 @@ naughty.config.defaults.border_color     = "#cb4b16ff"
 naughty.config.defaults.border_width     = 2
 naughty.config.defaults.hover_timeout    = 5
 
-terminal = "gnome-terminal"
-editor = "gvim"
+terminal = "lxterm"
+editor = os.getenv("EDITOR") or "editor"
 editor_cmd = terminal .. " -e " .. editor
 
 modkey = "Mod4"
