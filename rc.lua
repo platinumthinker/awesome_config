@@ -12,7 +12,6 @@ local naughty = require("naughty")
 require("modules.eminent.eminent")
 
 awful.util.spawn_with_shell("wmname LG3D")
-awful.util.spawn_with_shell("xfsettingsd")
 
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
@@ -62,7 +61,7 @@ naughty.config.defaults.border_color     = "#cb4b16ff"
 naughty.config.defaults.border_width     = 2
 naughty.config.defaults.hover_timeout    = 5
 
-terminal = "lxterm"
+terminal = "xterm"
 editor = os.getenv("EDITOR") or "editor"
 editor_cmd = terminal .. " -e " .. editor
 
