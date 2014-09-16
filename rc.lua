@@ -5,13 +5,13 @@ require("awful.autofocus")
 local beautiful = require("beautiful")
 -- Notification library
 local naughty = require("naughty")
-local naughty = require("naughty")
 --Dunamic tagging
 --local shifty = require("modules.shifty")
 --Hide unused tags
 require("modules.eminent.eminent")
 
 awful.util.spawn_with_shell("wmname LG3D")
+awful.util.spawn_with_shell("~/scripts/autostart.sh")
 
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
