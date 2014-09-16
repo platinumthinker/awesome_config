@@ -1,14 +1,15 @@
 #My beatufyl config for awesome wm 3.5.
 
 ##Screenshots:
-![Screenshot1](https://db.tt/syN8qCTn)
-![Screenshot2](https://db.tt/3pNMRBMo)
+![Screenshot1](https://dl.dropboxusercontent.com/u/25179463/screen/For%20README%20in%20git/awesome/1.png)
+![Screenshot2](https://dl.dropboxusercontent.com/u/25179463/screen/For%20README%20in%20git/awesome/2.png)
 
 ##Install
-Clone this repo:
-    git clone git@bitbucket.org:platinumthinker/awesomeconfig.git ~/.config/awesome
-Update submodule:
-    git submodule update --init modules/eminent
+###Clone this repo:
+> git clone git@bitbucket.org:platinumthinker/awesomeconfig.git ~/.config/awesome
+###Update submodule:
+> git submodule update --init modules/eminent
+
 ##Visual settings:
 ###AwesomeWM Theme:
  * [Dark solarized](https://github.com/cycojesus/awesome-solarized)
@@ -27,10 +28,11 @@ Update submodule:
  * Menu:            dmenu from sucless tools
 
 ##GUI program:
-* file manager:     thunar
+* File manager:     thunar
 * Menu:             xfce4-appfinder
 * Editor:           gvim
 * Pulse mixer:      pavucontrol
+* Block X:          slock from sucless tools
 * xfsettingsd
 
 
@@ -88,3 +90,4 @@ Using shortcuts: Win key + another keys
     g               -> Thunar (file manager)
     i               -> Iceweasel (internet browser)
     p               -> Xfce-appfinder (GUI menu)
+    b               -> slock (block X)
