@@ -58,7 +58,7 @@ naughty.config.defaults.border_color     = "#cb4b16ff"
 naughty.config.defaults.border_width     = 2
 naughty.config.defaults.hover_timeout    = 5
 
-terminal = "lxterm"
+terminal = "xterm"
 editor = os.getenv("EDITOR") or "editor"
 editor_cmd = terminal .. " -e " .. editor
 
@@ -152,13 +152,7 @@ client.connect_signal("focus",
     function(c) c.border_color = beautiful.border_focus end)
 client.connect_signal("unfocus",
     function(c) c.border_color = beautiful.border_normal end)
--- }}}
--- Startup program
--- {{{
 
-awful.util.spawn_with_shell("wmname LG3D")
-awful.util.spawn_with_shell("~/scripts/wal.sh")
 awful.util.spawn_with_shell("~/scripts/autorun.sh")
-awful.util.spawn_with_shell("~/.dropbox-dist/dropboxd start")
 
 -- }}}

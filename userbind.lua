@@ -1,13 +1,5 @@
 local awful = require("awful")
 
-command = table.concat(
-    {
-            "gmpc",
-            "gvim",
-            "claws-mail",
-            "pidgin"
-    }, " ")
-
 dmenu = "dmenu_run -fn 'DejaVu Mono-10:normal' -nb '#002b36' -nf\
     '#657b83' -sb '#002b36' -sf '#fdce59'"
 
@@ -19,16 +11,21 @@ globalkeys = awful.util.table.join(globalkeys,
         function () awful.util.spawn("x-www-browser") end),
     awful.key({ modkey,         }, "d",
         function () awful.util.spawn(dmenu) end),
-    awful.key({ modkey, "Shift" }, "d",
+    awful.key({ modkey, "Shift" }, "w",
         function ()
             awful.util.spawn(awful.util.getdir("config") ..
-                "/scripts/dmenu.sh " .. command)
+                "/scripts/winlist.sh " .. command)
+        end),
+    awful.key({ modkey,         }, "w",
+        function ()
+            awful.util.spawn(awful.util.getdir("config") ..
+                "/scripts/winctl.sh " .. command)
         end),
     awful.key({ modkey,         }, "p",
         function () awful.util.spawn("xfce4-appfinder") end),
     awful.key({ modkey,         }, "s",
         function () awful.util.spawn("pavucontrol") end),
-    awful.key({ modkey,         }, "a",
+    awful.key({ modkey,         }, "e",
         function () awful.util.spawn("gvim") end),
     awful.key({ modkey,         }, "b",
         function () awful.util.spawn("./scripts/lock.sh") end)

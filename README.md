@@ -25,6 +25,7 @@
  * Browser:         iceweasel (with pentadactyl)
  * Backlight:       xbacklight
  * Menu:            dmenu from sucless tools
+ * wmctl:           for lists all windows (or desktop)
 
 ##GUI program:
 * File manager:     thunar
@@ -38,7 +39,6 @@
 ##Default shortcut
 Using shortcuts: Win key + another keys
 ###Keys:
-    w               -> Open menu
     Left, Right     -> Prev/Next tags,
     Esc             -> Prev history tags,
     Tab             -> Focus to prev client from history
@@ -68,7 +68,7 @@ Using shortcuts: Win key + another keys
     o               -> Send to next screen
     t               -> Toggle ontop
     m               -> Toggle maximized
-    
+
 ###Shortcut for focused floating client:
     PgUp,PgDn       -> Resize by vertical (Inc/Dec)
     Home,End        -> Resize by horizontal (Inc/Dec)
@@ -82,11 +82,12 @@ Using shortcuts: Win key + another keys
 ###Program shortcut:
     ,.              -> Inc/Dec backlight (hight step)
     Shift ,.        -> Inc/Dec backlight (small step)
-    a               -> GVim
+    e               -> GVim
     s               -> Pavucontrol (sound mixer)
     d               -> Dmenu (programm menu)
-    Shift d         -> My Dmenu (custom program list)
     g               -> Thunar (file manager)
     i               -> Iceweasel (internet browser)
     p               -> Xfce-appfinder (GUI menu)
     b               -> slock (block X)
+    w               -> list all opened windows (in dmenu)
+    W               -> list all opened windows in current desktop (in dmenu)
