@@ -14,12 +14,12 @@ globalkeys = awful.util.table.join(globalkeys,
     awful.key({ modkey, "Shift" }, "w",
         function ()
             awful.util.spawn(awful.util.getdir("config") ..
-                "/scripts/winlist.sh " .. command)
+                "/scripts/winlist.sh ")
         end),
     awful.key({ modkey,         }, "w",
         function ()
             awful.util.spawn(awful.util.getdir("config") ..
-                "/scripts/winctl.sh " .. command)
+                "/scripts/winctl.sh ")
         end),
     awful.key({ modkey,         }, "p",
         function () awful.util.spawn("xfce4-appfinder") end),
