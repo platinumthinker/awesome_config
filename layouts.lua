@@ -12,24 +12,24 @@ layouts =
     awful.layout.suit.fair.horizontal,
     awful.layout.suit.spiral,
     --awful.layout.suit.spiral.dwindle,
-    awful.layout.suit.max
+    awful.layout.suit.max,
     --awful.layout.suit.max.fullscreen,
-    --awful.layout.suit.magnifier
+    awful.layout.suit.magnifier
 }
 -- }}}
 
 -- {{{ Tags
 -- Define a tag table which hold all screen tags.
 tags = {
-   names  = { "1:im", 
+   names  = { "1:im",
               "2:www",
               "3:code",
               "4:code",
-              "5:myc",
-              "6:ds",
-              "7:cocon",
-              "8:music",
-              "9:cal" },
+              "5:test",
+              "6:test",
+              "7:ssh",
+              "8:mail",
+              "9:music" },
    layout = { awful.layout.suit.fair, -- 1)
               awful.layout.suit.tile, -- 2)
               awful.layout.suit.tile, -- 3)

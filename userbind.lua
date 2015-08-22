@@ -6,9 +6,9 @@ dmenu = "dmenu_run -fn 'DejaVu Mono-10:normal' -nb '#002b36' -nf\
 -- {{{ Key bindings
 globalkeys = awful.util.table.join(globalkeys,
     awful.key({ modkey,         }, "g",
-        function () awful.util.spawn("thunar") end),
+        function () awful.util.spawn("dolphin") end),
     awful.key({ modkey,         }, "i",
-        function () awful.util.spawn("x-www-browser") end),
+        function () awful.util.spawn("iceweasel") end),
     awful.key({ modkey,         }, "d",
         function () awful.util.spawn(dmenu) end),
     awful.key({ modkey, "Shift" }, "w",

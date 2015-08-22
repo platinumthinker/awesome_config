@@ -39,7 +39,7 @@ theme.fg_urgent  = theme.colors.base3
 --}}}
 
 theme.bg_normal  = theme.colors.base3
-theme.bg_focus   = theme.colors.base3
+theme.bg_focus   = theme.colors.base1
 theme.bg_urgent  = theme.colors.red
 theme.bg_systray = theme.bg_normal
 -- }}}
@@ -47,7 +47,7 @@ theme.bg_systray = theme.bg_normal
 -- {{{ Borders
 theme.border_width  = "2"
 theme.border_normal = theme.colors.base2
-theme.border_focus  = theme.colors.base1
+theme.border_focus  = theme.colors.yellow
 theme.border_marked = theme.bg_urgent
 -- }}}
 
