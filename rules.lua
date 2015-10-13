@@ -21,6 +21,8 @@ awful.rules.rules = {
       -- For browser
     { rule_any = { class = {"Iceweasel", "Chromium", "Firefox"} },
       properties = { tag = tags[1][2] } },
+    { rule_any = { class = {"Amarok", "amarok"} },
+      properties = { tag = tags[1][9] } },
       -- For Pidgin
     { rule = { class = "Pidgin", role = "buddy_list" },
       properties = {switchtotag = true, floating=true,
