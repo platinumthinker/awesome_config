@@ -4,3 +4,6 @@
 [submodule "modules/shifty"]
 	path = modules/shifty
 	url = git://github.com/cdump/awesome-shifty
+[submodule "modules/vicious"]
+	path = modules/vicious
+	url = git@github.com:Mic92/vicious.git

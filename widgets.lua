@@ -1,4 +1,4 @@
-require("vicious")
+local vicious = require("modules.vicious")
 local awful = require("awful")
 awful.widget.tasklist = require("awful.widget.tasklist")
 local wibox = require("wibox")
