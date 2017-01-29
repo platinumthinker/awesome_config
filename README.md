@@ -7,7 +7,7 @@
 ###Clone this repo:
 > git clone git@bitbucket.org:platinumthinker/awesomeconfig.git ~/.config/awesome
 ###Update submodule:
-> git submodule update --init modules/eminent
+> git submodule update --init --recursive
 
 ##Visual settings:
 ###AwesomeWM Theme:
