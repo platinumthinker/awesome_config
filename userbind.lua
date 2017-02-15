@@ -2,7 +2,7 @@ local awful = require("awful")
 
 dmenu = "dmenu_run -fn 'DejaVu Mono-11:normal' -nb '#002b36' -nf '#657b83' -sb '#002b36' -sf '#fdce59'"
 
--- {{{ Key bindings
+-- {{{ User key bindings
 globalkeys = awful.util.table.join(globalkeys,
     awful.key({ modkey,         }, "g",
         function () awful.util.spawn("thunar") end),
