@@ -6,65 +6,62 @@ local beautiful = require("beautiful")
 awful.rules.rules = {
     -- All clients will match this rule.
     { rule = { },
-      properties = { 
+      properties = {
           border_width = beautiful.border_width,
           border_color = beautiful.border_normal,
           focus = awful.client.focus.filter,
+          raise = true,
           keys = clientkeys,
-          buttons = none} },
-      -- For flash plugin
-    { rule = { instance = "plugin-container" },
-      properties = { floating = true } },
+          buttons = clientbuttons,
+          screen = awful.screen.preferred,
+          placement = awful.placement.no_overlap+awful.placement.no_offscreen
+      }
+    },
       --For fullscreen apps
-    { rule_any = { class = {"gimp", "vlc" } },
-      properties = { floating = true } },
+    -- { rule_any = { class = {"gimp", "vlc" } },
+    --   properties = { floating = true } },
       -- For browser
     { rule_any = { class = {"Iceweasel", "Chromium", "Firefox"} },
-      properties = { tag = tags[1][2] } },
-    { rule_any = { class = {"Amarok", "amarok"} },
-      properties = { tag = tags[1][9] } },
+      properties = { screen = 1, tag = "2:www" } },
+    -- Floating clients.
+    { rule_any = {
+        instance = {
+          "DTA",  -- Firefox addon DownThemAll.
+          "copyq",  -- Includes session name in class.
+        },
+        class = {
+          "Arandr",
+          "Gpick",
+          "Kruler",
+          "MessageWin",  -- kalarm.
+          "Sxiv",
+          "Wpa_gui",
+          "pinentry",
+          "veromix",
+          "xtightvncviewer"},
+
+        name = {
+          "Event Tester",  -- xev.
+        },
+        role = {
+          "AlarmWindow",  -- Thunderbird's calendar.
+          "pop-up",       -- e.g. Google Chrome's (detached) Developer Tools.
+        }
+      }, properties = { floating = true }},
+    -- Add titlebars to normal clients and dialogs
+    { rule_any = {type = { "normal", "dialog" }
+      }, properties = { titlebars_enabled = true }
+    },
       -- For Pidgin
     { rule = { class = "Pidgin", role = "buddy_list" },
-      properties = {switchtotag = true, floating=true,
-                  maximized_vertical=true, maximized_horizontal=false },
-      callback = function (c)
-          -- width of buddy list window
-          local cl_width = 250    
-          -- default placement. note: you have to restart
-          -- pidgin for changes to take effect
-          local def_left = true   
-
-          local scr_area = screen[c.screen].workarea
-          local cl_strut = c:struts()
-          local geometry = nil
-
-          -- adjust scr_area for this client's struts
-          if cl_strut ~= nil then
-              if cl_strut.left ~= nil and cl_strut.left > 0 then
-                  geometry = {x=scr_area.x-cl_strut.left, y=scr_area.y,
-                              width=cl_strut.left}
-              elseif cl_strut.right ~= nil and cl_strut.right > 0 then
-                  geometry = {x=scr_area.x+scr_area.width, y=scr_area.y,
-                              width=cl_strut.right}
-              end
-          end
-          -- scr_area is unaffected, so we can use the naive coordinates
-          if geometry == nil then
-              if def_left then
-                  c:struts({left=cl_width, right=0})
-                  geometry = {x=scr_area.x, y=scr_area.y,
-                              width=cl_width}
-              else
-                  c:struts({right=cl_width, left=0})
-                  geometry = {x=scr_area.x+scr_area.width-cl_width, y=scr_area.y,
-                              width=cl_width}
-              end
-          end
-          c:geometry(geometry)
-    end },
-    { rule = { class = "Pidgin", role = "conversation"},
-      properties = { tag = tags[1][1] }, 
-      callback = awful.client.setslave}
+      properties = { tag = "1:im", screen = 1,
+                     switchtotag = true },
+      callback = awful.client.setmaster },
+    { rule = { class = "Pidgin",
+               role = "conversation"},
+      properties = { tag = "1:im", screen = 1,
+                     titlebars_enabled = false },
+      callback = awful.client.setslave },
 }
 -- }}}
 

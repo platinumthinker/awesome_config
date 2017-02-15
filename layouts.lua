@@ -7,17 +7,14 @@ local beautiful = require("beautiful")
 -- Table of layouts to cover with awful.layout.inc, order matters.
 layouts =
 {
-    --awful.layout.suit.floating,
+    awful.layout.suit.corner.nw,
+    awful.layout.suit.floating,
     awful.layout.suit.tile,
-    --awful.layout.suit.tile.left,
-    --awful.layout.suit.tile.bottom,
-    awful.layout.suit.tile.top,
-    --awful.layout.suit.fair,
+    awful.layout.suit.tile.bottom,
+    awful.layout.suit.fair,
     awful.layout.suit.fair.horizontal,
-    awful.layout.suit.spiral,
-    --awful.layout.suit.spiral.dwindle,
+    awful.layout.suit.spiral.dwindle,
     awful.layout.suit.max,
-    --awful.layout.suit.max.fullscreen,
     awful.layout.suit.magnifier
 }
 -- }}}
@@ -34,7 +31,7 @@ tags = {
               "7:ssh",
               "8:mail",
               "9:music" },
-   layout = { awful.layout.suit.fair, -- 1)
+   layout = { awful.layout.suit.tile, -- 1)
               awful.layout.suit.tile, -- 2)
               awful.layout.suit.tile, -- 3)
               awful.layout.suit.tile, -- 4)
@@ -65,10 +62,12 @@ awful.screen.connect_for_each_screen(function(s)
     set_wallpaper(s)
     -- Each screen has its own tag table.
     tags[s] = awful.tag(tags.names, s, tags.layout)
-    -- For Pidgin IM
-    awful.tag.setncol(2, tags[s][1])
-    awful.tag.setnmaster (1, tags[s][1])
 
+
+    -- For Pidgin IM
+    -- tags[s]["1:im"] = awful.tag.master_width_factor = 0.3
+    awful.tag.setnmaster (1, tags[s][1])
+    awful.tag.setncol(3, tags[s][1])
     -- Create a promptbox for each screen
     s.mypromptbox = awful.widget.prompt()
     -- Create an imagebox widget which will contains an icon indicating which layout we're using.
