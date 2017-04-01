@@ -10,12 +10,12 @@ layouts =
     awful.layout.suit.corner.nw,
     awful.layout.suit.floating,
     awful.layout.suit.tile,
-    awful.layout.suit.tile.bottom,
+    -- awful.layout.suit.tile.bottom,
     awful.layout.suit.fair,
-    awful.layout.suit.fair.horizontal,
-    awful.layout.suit.spiral.dwindle,
-    awful.layout.suit.max,
-    awful.layout.suit.magnifier
+    -- awful.layout.suit.fair.horizontal,
+    awful.layout.suit.spiral.dwindle
+    -- awful.layout.suit.max,
+    -- awful.layout.suit.magnifier
 }
 -- }}}
 
@@ -81,29 +81,5 @@ awful.screen.connect_for_each_screen(function(s)
     -- Create a taglist widget
     s.mytaglist = awful.widget.taglist(s, awful.widget.taglist.filter.all, taglist_buttons)
 
-    -- Create a tasklist widget
-    -- s.mytasklist = awful.widget.tasklist(s, awful.widget.tasklist.filter.currenttags, tasklist_buttons)
-
-    -- -- Create the wibox
-    -- s.mywibox = awful.wibar({ position = "top", screen = s })
-
-    -- -- Add widgets to the wibox
-    -- s.mywibox:setup {
-    --     layout = wibox.layout.align.horizontal,
-    --     { -- Left widgets
-    --         layout = wibox.layout.fixed.horizontal,
-    --         mylauncher,
-    --         s.mytaglist,
-    --         s.mypromptbox,
-    --     },
-    --     s.mytasklist, -- Middle widget
-    --     { -- Right widgets
-    --         layout = wibox.layout.fixed.horizontal,
-    --         mykeyboardlayout,
-    --         wibox.widget.systray(),
-    --         mytextclock,
-    --         s.mylayoutbox,
-    --     },
-    -- }
 end)
 -- }}}

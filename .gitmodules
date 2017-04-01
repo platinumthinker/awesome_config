@@ -7,3 +7,6 @@
 [submodule "modules/vicious"]
 	path = modules/vicious
 	url = git@github.com:Mic92/vicious.git
+[submodule "modules/lain"]
+	path = lain
+	url = git@github.com:copycat-killer/lain.git
