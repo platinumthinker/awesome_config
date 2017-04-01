@@ -17,12 +17,6 @@ awful.rules.rules = {
           placement = awful.placement.no_overlap+awful.placement.no_offscreen
       }
     },
-      --For fullscreen apps
-    -- { rule_any = { class = {"gimp", "vlc" } },
-    --   properties = { floating = true } },
-      -- For browser
-    { rule_any = { class = {"Iceweasel", "Chromium", "Firefox"} },
-      properties = { screen = 1, tag = "2:www" } },
     -- Floating clients.
     { rule_any = {
         instance = {
@@ -48,19 +42,31 @@ awful.rules.rules = {
           "pop-up",       -- e.g. Google Chrome's (detached) Developer Tools.
         }
       }, properties = { floating = true }},
+
     -- Add titlebars to normal clients and dialogs
-    { rule_any = {type = { "normal", "dialog" }
+    { rule_any = {type = { "normal", "dialog" }},
+      except_any = {
+        class = {
+            "Xfce4-terminal",
+            "xterm",
+            "lxterminal",
+            "Pidgin",
+            "firefox",
+            "Firefox-esr",
+            "iceweasel",
+            "chrome",
+            "chromium",
+            "google-chrome"
+        }
       }, properties = { titlebars_enabled = true }
     },
       -- For Pidgin
     { rule = { class = "Pidgin", role = "buddy_list" },
-      properties = { tag = "1:im", screen = 1,
-                     switchtotag = true },
+      properties = { tag = "1:im", screen = 1, switchtotag = true },
       callback = awful.client.setmaster },
     { rule = { class = "Pidgin",
                role = "conversation"},
-      properties = { tag = "1:im", screen = 1,
-                     titlebars_enabled = false },
+      properties = { tag = "1:im", screen = 1, switchtotag = true },
       callback = awful.client.setslave },
 }
 -- }}}

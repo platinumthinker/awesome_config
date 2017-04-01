@@ -64,10 +64,12 @@ awful.screen.connect_for_each_screen(function(s)
     tags[s] = awful.tag(tags.names, s, tags.layout)
 
 
-    -- For Pidgin IM
-    -- tags[s]["1:im"] = awful.tag.master_width_factor = 0.3
-    awful.tag.setnmaster (1, tags[s][1])
-    awful.tag.setncol(3, tags[s][1])
+    -- -- For Pidgin IM
+    if s == 1 then
+        awful.tag.setnmaster (1, tags[s][1])
+        awful.tag.setncol(3, tags[s][1])
+    end
+
     -- Create a promptbox for each screen
     s.mypromptbox = awful.widget.prompt()
     -- Create an imagebox widget which will contains an icon indicating which layout we're using.
