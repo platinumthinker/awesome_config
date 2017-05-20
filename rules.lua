@@ -50,6 +50,7 @@ awful.rules.rules = {
         class = {
             "Xfce4-terminal",
             "xterm",
+            "Gnome-terminal",
             "lxterminal",
             "Pidgin",
             "firefox",
