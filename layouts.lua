@@ -7,14 +7,13 @@ local beautiful = require("beautiful")
 -- Table of layouts to cover with awful.layout.inc, order matters.
 awful.layout.layouts =
 {
-    awful.layout.suit.corner.nw,
-    awful.layout.suit.floating,
+    -- awful.layout.suit.corner.nw,
     awful.layout.suit.tile,
-    -- awful.layout.suit.tile.bottom,
-    -- awful.layout.suit.fair,
-    awful.layout.suit.fair.horizontal,
+    awful.layout.suit.tile.bottom,
+    awful.layout.suit.fair
+    -- awful.layout.suit.fair.horizontal,
     -- awful.layout.suit.spiral.dwindle
-    -- awful.layout.suit.max,
+    -- awful.layout.suit.max
     -- awful.layout.suit.magnifier
 }
 -- }}}
@@ -60,15 +59,15 @@ screen.connect_signal("property::geometry", set_wallpaper)
 awful.screen.connect_for_each_screen(function(s)
     -- Wallpaper
     set_wallpaper(s)
-    -- Each screen has its own tag table.
-    tags[s] = awful.tag(tags.names, s, tags.layout)
 
-
-    -- -- For Pidgin IM
+    -- For Pidgin IM
     if s == 1 then
         awful.tag.setnmaster (1, tags[s][1])
         awful.tag.setncol(3, tags[s][1])
     end
+
+    -- Each screen has its own tag table.
+    tags[s] = awful.tag(tags.names, s, tags.layout)
 
     -- Create a promptbox for each screen
     s.mypromptbox = awful.widget.prompt()
