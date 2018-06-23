@@ -9,6 +9,7 @@ local beautiful = require("beautiful")
 -- Notification library
 local naughty = require("naughty")
 
+awful.spawn(awful.util.getdir("config") ..  "/scripts/autorun.sh ")
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
 -- another config (This code will only ever execute for the fallback config)
@@ -37,7 +38,7 @@ end
 -- {{{ Variable definitions
 -- Themes define colours, icons, font and wallpapers.
 beautiful.init( awful.util.getdir("config") ..
-    "/themes/awesome-solarized/theme.lua" )
+    "/themes/awesome-solarized-light/theme.lua" )
 
 -- This is used later as the default terminal and editor to run.
 terminal = "x-terminal-emulator"

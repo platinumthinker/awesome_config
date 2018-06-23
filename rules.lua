@@ -58,7 +58,8 @@ awful.rules.rules = {
             "iceweasel",
             "chrome",
             "chromium",
-            "google-chrome"
+            "google-chrome",
+            "konsole"
         }
       }, properties = { titlebars_enabled = true }
     },

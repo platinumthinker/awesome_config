@@ -1,32 +1,33 @@
 local awful = require("awful")
 
-dmenu = "dmenu_run -fn 'DejaVu Mono-11:normal' -nb '#002b36' -nf '#657b83' -sb '#002b36' -sf '#fdce59'"
-
 -- {{{ User key bindings
 globalkeys = awful.util.table.join(globalkeys,
     awful.key({ modkey,         }, "g",
-        function () awful.util.spawn("thunar") end),
+        function () awful.spawn("thunar") end),
     awful.key({ modkey,         }, "i",
-        function () awful.util.spawn("firefox") end),
+        function () awful.spawn("firefox") end),
     awful.key({ modkey,         }, "d",
-        function () awful.util.spawn(dmenu) end),
+        function ()
+            awful.spawn(awful.util.getdir("config") ..
+                "/scripts/dmenu_run.sh ")
+        end),
     awful.key({ modkey, "Shift" }, "w",
         function ()
-            awful.util.spawn(awful.util.getdir("config") ..
+            awful.spawn(awful.util.getdir("config") ..
                 "/scripts/winlist.sh ")
         end),
     awful.key({ modkey,         }, "w",
         function ()
-            awful.util.spawn(awful.util.getdir("config") ..
+            awful.spawn(awful.util.getdir("config") ..
                 "/scripts/winctl.sh ")
         end),
     awful.key({ modkey,         }, "p",
-        function () awful.util.spawn("xfce4-appfinder") end),
+        function () awful.spawn("xfce4-appfinder") end),
     awful.key({ modkey,         }, "s",
-        function () awful.util.spawn("pavucontrol") end),
+        function () awful.spawn("pavucontrol") end),
     awful.key({ modkey,         }, "e",
-        function () awful.util.spawn("gvim") end),
+        function () awful.spawn("gvim") end),
     awful.key({ modkey,         }, "b",
-        function () awful.util.spawn("./scripts/lock.sh") end)
+        function () awful.spawn("./scripts/lock.sh") end)
 )
 -- }}}
