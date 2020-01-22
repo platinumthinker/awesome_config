@@ -41,7 +41,7 @@ beautiful.init( awful.util.getdir("config") ..
     "/themes/awesome-solarized-light/theme.lua" )
 
 -- This is used later as the default terminal and editor to run.
-terminal = "x-terminal-emulator"
+terminal = "xfce4-terminal"
 editor = os.getenv("EDITOR") or "editor"
 editor_cmd = terminal .. " -e " .. editor
 
