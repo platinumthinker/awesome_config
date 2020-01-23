@@ -9,6 +9,20 @@ local beautiful = require("beautiful")
 -- Notification library
 local naughty = require("naughty")
 
+require("awful.remote")
+require("screenful")
+
+-- naughty.config.presets.presets.low.timeout = 5 * 60
+-- Default timeout for notification msgs
+naughty.config.defaults.timeout = 300
+naughty.config.defaults.screen = 1
+naughty.config.defaults.border_width = 5
+naughty.config.padding = 7
+naughty.config.spacing = 7
+
+-- Theme for notifications
+beautiful.notification_border_color = "#002b36ff"
+
 awful.spawn(awful.util.getdir("config") ..  "/scripts/autorun.sh ")
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to

@@ -3,31 +3,22 @@ local awful = require("awful")
 -- {{{ User key bindings
 globalkeys = awful.util.table.join(globalkeys,
     awful.key({ modkey,         }, "g",
-        function () awful.spawn("thunar") end),
+        function () awful.spawn("thunar") end,
+        {description="file explorer", group = "user"}),
     awful.key({ modkey,         }, "i",
-        function () awful.spawn("firefox") end),
+        function () awful.spawn("firefox") end,
+        {description="web browser", group = "user"}),
     awful.key({ modkey,         }, "d",
-        function ()
-            awful.spawn(awful.util.getdir("config") ..
-                "/scripts/dmenu_run.sh ")
-        end),
-    awful.key({ modkey, "Shift" }, "w",
-        function ()
-            awful.spawn(awful.util.getdir("config") ..
-                "/scripts/winlist.sh ")
-        end),
+        function () awful.spawn("rofi -show run") end,
+        {description="run program", group = "user"}),
     awful.key({ modkey,         }, "w",
-        function ()
-            awful.spawn(awful.util.getdir("config") ..
-                "/scripts/winctl.sh ")
-        end),
-    awful.key({ modkey,         }, "p",
-        function () awful.spawn("xfce4-appfinder") end),
+        function () awful.spawn("rofi -show window") end,
+        {description="switch to windows", group = "user"}),
     awful.key({ modkey,         }, "s",
-        function () awful.spawn("pavucontrol") end),
-    awful.key({ modkey,         }, "e",
-        function () awful.spawn("gvim") end),
+        function () awful.spawn("pavucontrol") end,
+        {description="sound control", group = "user"}),
     awful.key({ modkey,         }, "b",
-        function () awful.spawn("./scripts/lock.sh") end)
+        function () awful.spawn("slock") end,
+        {description="lock PC", group = "user"})
 )
 -- }}}
