@@ -20,17 +20,13 @@
  * DejaVu Sans Mono
 
 ##Using program:
- * Terminal:        lxterm
- * IM:              pidgin
- * Browser:         iceweasel (with pentadactyl)
+ * Terminal:        xfce4-terminal
+ * Browser:         firefox
  * Backlight:       xbacklight
- * Menu:            dmenu from sucless tools
- * wmctl:           for lists all windows (or desktop)
+ * Menu:            rofi
 
 ##GUI program:
 * File manager:     thunar
-* Menu:             xfce4-appfinder
-* Editor:           gvim
 * Pulse mixer:      pavucontrol
 * Block X:          slock from sucless tools
 * xfsettingsd
