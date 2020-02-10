@@ -17,7 +17,7 @@ outputMapping = {
 screens = {
     ['2088484784921'] = { -- DP1
         ['connected'] = function (xrandrOutput)
-            return '--output ' .. xrandrOutput .. ' --left-of eDP1 --primary'
+            return '--output ' .. xrandrOutput .. ' --right-of ' .. defaultOutput .. ' --primary'
         end,
 		['disconnected'] = function (xrandrOutput)
 			if xrandrOutput ~= defaultOutput then
@@ -26,6 +26,20 @@ screens = {
 			return nil
 		end
     },
+  	['2088490884821'] = { -- HDMI1
+  		['connected'] = function (xrandrOutput)
+  			if xrandrOutput ~= defaultOutput then
+  				return '--output ' .. xrandrOutput .. ' --left-of ' .. defaultOutput
+  			end
+  			return nil
+  		end,
+  		['disconnected'] = function (xrandrOutput)
+  			if xrandrOutput ~= defaultOutput then
+  			return '--output ' .. xrandrOutput .. ' --off --output ' .. defaultOutput .. ' --auto'
+  			end
+  			return nil
+  		end
+  	},
 	['default'] = {
 		['connected'] = function (xrandrOutput)
             if xrandrOutput ~= defaultOutput then

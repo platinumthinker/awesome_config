@@ -20,9 +20,6 @@ naughty.config.defaults.border_width = 5
 naughty.config.padding = 7
 naughty.config.spacing = 7
 
--- Theme for notifications
-beautiful.notification_border_color = "#002b36ff"
-
 awful.spawn(awful.util.getdir("config") ..  "/scripts/autorun.sh ")
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
@@ -53,6 +50,10 @@ end
 -- Themes define colours, icons, font and wallpapers.
 beautiful.init( awful.util.getdir("config") ..
     "/themes/awesome-solarized-light/theme.lua" )
+
+-- Theme for notifications
+beautiful.notification_border_color = "#002b36ff"
+beautiful.gap_single_client = false
 
 -- This is used later as the default terminal and editor to run.
 terminal = "xfce4-terminal"

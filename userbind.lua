@@ -1,4 +1,6 @@
 local awful = require("awful")
+-- Notification library
+local naughty = require("naughty")
 
 -- {{{ User key bindings
 globalkeys = awful.util.table.join(globalkeys,
@@ -19,6 +21,9 @@ globalkeys = awful.util.table.join(globalkeys,
         {description="sound control", group = "user"}),
     awful.key({ modkey,         }, "b",
         function () awful.spawn("slock") end,
-        {description="lock PC", group = "user"})
+        {description="lock PC", group = "user"}),
+    awful.key({ modkey,         }, "p",
+        function () naughty.toggle() end,
+        {description="toggle notifications", group = "user"})
 )
 -- }}}

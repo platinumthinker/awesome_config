@@ -10,10 +10,10 @@ awful.layout.layouts =
     -- awful.layout.suit.corner.nw,
     awful.layout.suit.tile,
     awful.layout.suit.tile.bottom,
-    awful.layout.suit.fair
+    awful.layout.suit.fair,
     -- awful.layout.suit.fair.horizontal,
     -- awful.layout.suit.spiral.dwindle
-    -- awful.layout.suit.max
+    awful.layout.suit.max
     -- awful.layout.suit.magnifier
 }
 -- }}}
@@ -30,8 +30,8 @@ tags = {
               "7:ssh",
               "8:mail",
               "9:music" },
-   layout = { awful.layout.suit.tile, -- 1)
-              awful.layout.suit.tile, -- 2)
+   layout = { awful.layout.suit.max, -- 1)
+              awful.layout.suit.max, -- 2)
               awful.layout.suit.tile, -- 3)
               awful.layout.suit.tile, -- 4)
               awful.layout.suit.tile, -- 5)

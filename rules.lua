@@ -59,10 +59,27 @@ awful.rules.rules = {
             "chrome",
             "chromium",
             "google-chrome",
-            "konsole"
+            "konsole",
+            "discord",
+            "mattermost",
+            "telegram"
         }
       }, properties = { titlebars_enabled = true }
     },
+    { rule_any = {
+        class = {
+            "discord",
+            "mattermost",
+            "telegram"
+        }
+      }, properties = { tag = "1:im", screen = 1 }
+    },
+    { rule = { class = "firefox" },
+      properties = { tag = "2:www", screen = 1 } },
+    { rule = { class = "chrome" },
+      properties = { tag = "2:www", screen = 1 } },
+    { rule = { class = "chromium" },
+      properties = { tag = "2:www", screen = 1 } },
       -- For Pidgin
     { rule = { class = "Pidgin", role = "buddy_list" },
       properties = { tag = "1:im", screen = 1, switchtotag = true },
