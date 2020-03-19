@@ -15,6 +15,8 @@ require('screens_db')
 local card = 'card0'
 local dev = '/sys/class/drm/'
 local configPath = awful.util.getdir("config") .. "/screens_db.lua"
+local cardDev = dev .. card
+local outputsCount = 0
 
 local function log(text)
 	naughty.notify({
@@ -39,16 +41,20 @@ end
 local function connectedOutputs(path, card)
 	local result = {}
 	local outputs = io.popen('ls -1 -d ' .. path .. '/' .. card .. '-*')
+    outputsCount = 0
 	while true do
 		local output = outputs:read('*line')
 		if not output then break end
 		if isOutputConnected(output) then
+            outputsCount = outputsCount + 1
 			result[output] = true
 		end
 	end
 
 	return result
 end
+
+local outputs = connectedOutputs(cardDev, card)
 
 local function emptyStr(str)
 	return str == nil or str == ''
@@ -112,13 +118,13 @@ local function appendConfiguration(screenId, xrandrOut)
 	local file = io.open(configPath, 'a')
 
 	file:write("--\t['" .. screenId .. "'] = { -- " .. xrandrOut .. "\n")
-	file:write("--\t\t['connected'] = function (xrandrOutput)\n")
+	file:write("--\t\t['connected'] = function (xrandrOutput, outputCount)\n")
 	file:write("--\t\t\tif xrandrOutput ~= defaultOutput then\n")
 	file:write("--\t\t\t\treturn '--output ' .. xrandrOutput .. ' --auto --same-as ' .. defaultOutput\n")
 	file:write("--\t\t\tend\n")
 	file:write("--\t\t\treturn nil\n")
 	file:write("--\t\tend,\n")
-	file:write("--\t\t['disconnected'] = function (xrandrOutput)\n")
+	file:write("--\t\t['disconnected'] = function (xrandrOutput, outputsCount)\n")
 	file:write("--\t\t\tif xrandrOutput ~= defaultOutput then\n")
 	file:write("--\t\t\treturn '--output ' .. xrandrOutput .. ' --off --output ' .. defaultOutput .. ' --auto'\n")
 	file:write("--\t\t\tend\n")
@@ -139,7 +145,7 @@ local function performConfiguredAction(screenId, action, xrandrOut)
         local configuration = screens[screenId]
         if configuration then
             if configuration[action] then -- get xrandr options
-                xrandrOpts = configuration[action](xrandrOut)
+                xrandrOpts = configuration[action](xrandrOut, outputsCount)
             end
         else -- configuration not found, append configuration template
             if tostring(screenId):len() ~= 0 and not hasConfigurationFor(screenId) then
@@ -169,9 +175,6 @@ local function enableOutput(out, changedCard)
 	local screenId = getScreenId(out)
     performConfiguredAction(screenId, 'connected', xrandrOut)
 end
-
-local cardDev = dev .. card
-local outputs = connectedOutputs(cardDev, card)
 
 function updateScreens(changedCard)
 	local newCardDev = dev .. changedCard

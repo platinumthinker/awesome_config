@@ -16,38 +16,38 @@ outputMapping = {
 
 screens = {
     ['2088484784921'] = { -- DP1
-        ['connected'] = function (xrandrOutput)
-            return '--output ' .. xrandrOutput .. ' --right-of ' .. defaultOutput .. ' --primary'
+        ['connected'] = function (xrandrOutput, count)
+            return '--output ' .. xrandrOutput .. ' --left-of ' .. defaultOutput .. ' --primary'
         end,
-		['disconnected'] = function (xrandrOutput)
-			if xrandrOutput ~= defaultOutput then
-			return '--output ' .. xrandrOutput .. ' --off --output ' .. defaultOutput .. ' --auto'
+		['disconnected'] = function (xrandrOutput, count)
+            if xrandrOutput ~= defaultOutput then
+                return '--output ' .. xrandrOutput .. ' --off --output ' .. defaultOutput .. ' --auto'
 			end
 			return nil
 		end
     },
   	['2088490884821'] = { -- HDMI1
-  		['connected'] = function (xrandrOutput)
-  			if xrandrOutput ~= defaultOutput then
-  				return '--output ' .. xrandrOutput .. ' --left-of ' .. defaultOutput
-  			end
-  			return nil
+  		['connected'] = function (xrandrOutput, count)
+            return '--output ' .. xrandrOutput .. ' --right-of ' .. defaultOutput
   		end,
-  		['disconnected'] = function (xrandrOutput)
+  		['disconnected'] = function (xrandrOutput, count)
   			if xrandrOutput ~= defaultOutput then
-  			return '--output ' .. xrandrOutput .. ' --off --output ' .. defaultOutput .. ' --auto'
+                return '--output ' .. xrandrOutput .. ' --off --output ' .. defaultOutput .. ' --auto'
   			end
-  			return nil
+            return nil
   		end
   	},
 	['default'] = {
-		['connected'] = function (xrandrOutput)
-            if xrandrOutput ~= defaultOutput then
-                return '--output ' .. xrandrOutput .. ' --left-of ' .. defaultOutput .. ' --primary'
+		['connected'] = function (xrandrOutput, count)
+            if count > 1 then
+                return '--output ' .. xrandrOutput .. ' --off --same-as' .. defaultOutput .. ' --auto'
+            elseif xrandrOutput ~= defaultOutput then
+                return '--output  --primary ' .. xrandrOutput .. ' --same-as' .. defaultOutput
+            else
+                return nil
             end
-            return nil
 		end,
-		['disconnected'] = function (xrandrOutput)
+		['disconnected'] = function (xrandrOutput, count)
             if xrandrOutput ~= defaultOutput then
                 return '--output ' .. xrandrOutput .. ' --off --output ' .. defaultOutput .. ' --auto'
             end

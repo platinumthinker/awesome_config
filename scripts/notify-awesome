@@ -1,12 +1,12 @@
 #!/bin/sh
 
 _PID=$(pgrep -x awesome)
-_UID=$(ps -o uid= -p $_PID)
-USER=$(id -nu $_UID)
-DBUS_ADDRESS_VAR=$(cat /proc/$_PID/environ | grep -z "^DBUS_SESSION_BUS_ADDRESS=")
+_UID=$(ps -o uid= -p "$_PID")
+USER=$(id -nu "$_UID")
+DBUS_ADDRESS_VAR=$(cat "/proc/$_PID/environ" | grep -z "^DBUS_SESSION_BUS_ADDRESS=")
 
 notify() {
-  	su - $USER -c "/bin/bash \
+  	su - "$USER" -c "/bin/bash \
                     -c ' \
                         export DISPLAY=:0; \
                         export XAUTHORITY='/home/$USER/.Xauthority'; \
