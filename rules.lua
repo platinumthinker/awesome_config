@@ -15,7 +15,6 @@ awful.rules.rules = {
           buttons = clientbuttons,
           screen = awful.screen.preferred,
           placement = awful.placement.no_overlap+awful.placement.no_offscreen
-          -- size_hints_honor = false
       }
     },
     -- Floating clients.
@@ -34,7 +33,6 @@ awful.rules.rules = {
           "pinentry",
           "veromix",
           "xtightvncviewer"},
-
         name = {
           "Event Tester",  -- xev.
         },
@@ -61,16 +59,21 @@ awful.rules.rules = {
             "google-chrome",
             "konsole",
             "discord",
-            "mattermost",
-            "telegram"
+            "Mattermost",
+            "telegram",
+            "telegram-desktop",
+            "TelegramDesktop",
+            "Thunderbird"
         }
       }, properties = { titlebars_enabled = true }
     },
     { rule_any = {
         class = {
             "discord",
-            "mattermost",
-            "telegram"
+            "telegram",
+            "telegram-desktop",
+            "TelegramDesktop",
+            "Mattermost"
         }
       }, properties = { tag = "1:im", screen = 1 }
     },
@@ -80,10 +83,16 @@ awful.rules.rules = {
       properties = { tag = "2:www", screen = 1 } },
     { rule = { class = "chromium" },
       properties = { tag = "2:www", screen = 1 } },
+    { rule = { class = "Thunderbird" },
+      properties = { tag = "8:mail", screen = 1 } },
       -- For Pidgin
     { rule = { class = "Pidgin", role = "buddy_list" },
       properties = { tag = "1:im", screen = 1, switchtotag = true },
       callback = awful.client.setmaster },
+    { rule = { class = "firefox" },
+      properties = { tag = "2:www", screen = 1 } },
+    { rule = { class = "xfce4-terminal" },
+      properties = { tag = "3:code", screen = 1 } },
     { rule = { class = "Pidgin",
                role = "conversation"},
       properties = { tag = "1:im", screen = 1, switchtotag = true },

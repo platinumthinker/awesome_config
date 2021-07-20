@@ -17,6 +17,7 @@ local dev = '/sys/class/drm/'
 local configPath = awful.util.getdir("config") .. "/screens_db.lua"
 local cardDev = dev .. card
 local outputsCount = 0
+local wallpaperPath = awful.util.getdir("config") .. "/wallpaper.png"
 
 local function log(text)
 	naughty.notify({
@@ -136,15 +137,25 @@ local function appendConfiguration(screenId, xrandrOut)
 end
 
 local function setupScreen(xrandrParams)
-	os.execute('xrandr ' .. xrandrParams)
+    log('execute xrandr ' .. xrandrParams)
+    local handle = io.popen('xrandr ' .. xrandrParams)
+    local result = handle:read("*a")
+    handle:close()
+    log('results: ' .. result)
+	-- os.execute('xrandr ' .. xrandrParams)
 end
 
 local function performConfiguredAction(screenId, action, xrandrOut)
+    log("Action: " .. action)
+    log("xrandrOut: " .. xrandrOut)
+    log("screenId: " .. tostring(screenId))
 	local xrandrOpts = ''
     if screenId then
         local configuration = screens[screenId]
         if configuration then
             if configuration[action] then -- get xrandr options
+                log("get xrandrOpts :".. xrandrOpts)
+                log("for outCounts:".. tostring(outputsCount))
                 xrandrOpts = configuration[action](xrandrOut, outputsCount)
             end
         else -- configuration not found, append configuration template
@@ -180,11 +191,14 @@ function updateScreens(changedCard)
 	local newCardDev = dev .. changedCard
 	local newOutputs = connectedOutputs(newCardDev, changedCard)
 	local mergedOutputs = mergeTables(outputs, newOutputs)
+    log("Update screens: " .. changedCard)
 
 	for out in pairs(mergedOutputs) do
 		if not outputs[out] then -- connected
+            log("enable output: " .. out)
 			enableOutput(out, changedCard)
 		elseif not newOutputs[out] then -- disconnected
+            log("disable output: " .. out)
 			disableOutput(out, changedCard)
 		end
 	end
@@ -192,5 +206,13 @@ function updateScreens(changedCard)
 
     -- reinit awesome
     awesome.restart()
+
+    -- set wallpaper
+    local handle = io.popen('feh --bg-scale ' .. wallpaper)
+    local result = handle:read("*a")
+    handle:close()
+    log("res from feh: ")
+    log(result)
+    log("========")
 end
 
