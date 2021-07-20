@@ -1,4 +1,4 @@
-#My beatufyl config for awesome wm 3.5.
+#My beatufyl config for awesome wm 4.0
 
 ##Screenshots:
 ![Screenshot1](https://dl.dropboxusercontent.com/u/25179463/screen/For%20README%20in%20git/awesome/1.png)
