@@ -4,7 +4,6 @@
 ------------------------------------------------------------------------------
 
 -- Package envronment
-local naughty = require('naughty')
 local awful = require("awful")
 local screen = require("awful.screen")
 local io = require("io")
@@ -20,12 +19,6 @@ local outputsCount = 0
 local wallpaperPath = awful.util.getdir("config") .. "/wallpaper.png"
 
 local function log(text)
-	naughty.notify({
-		title = 'screenful debug',
-		text = text,
-		ontop = true,
-		preset = naughty.config.presets.critical
-	})
 	local log = io.open('/tmp/awesomewm-widget-screenful.error.log', 'a+')
 	log:write(text .. "\n")
 	log:flush()
@@ -138,11 +131,24 @@ end
 
 local function setupScreen(xrandrParams)
     log('execute xrandr ' .. xrandrParams)
-    local handle = io.popen('xrandr ' .. xrandrParams .. ' 2>&1', 'r')
+    -- Try to run XRandr command, redirect stderr to stdout and echo for catch
+    -- all cases of errors
+    -- It's very painful way to catch erorrs but i don't know better way
+    local handle = io.popen('xrandr ' .. xrandrParams .. ' 2>&1 || echo ::ERROR::', 'r')
+    if handle == nil then
+        log('error execute cmd')
+        return false
+    end
     local result = handle:read("*all")
     handle:close()
+
+    if result:find "::ERROR::" then
+        log('error: ' .. result)
+        return false
+    end
+
     log('results: ' .. result)
-	-- os.execute('xrandr ' .. xrandrParams)
+    return true
 end
 
 local function performConfiguredAction(screenId, action, xrandrOut)
@@ -160,31 +166,30 @@ local function performConfiguredAction(screenId, action, xrandrOut)
             end
         else -- configuration not found, append configuration template
             if tostring(screenId):len() ~= 0 and not hasConfigurationFor(screenId) then
-                naughty.notify({text = 'Append new configuration for screen id: ' .. screenId})
                 appendConfiguration(screenId, xrandrOut)
             end
         end
     end
 
-    if xrandrOpts:len() == 0 then -- use default configuration if specific was not found
-        xrandrOpts = screens['default'][action](xrandrOut)
+    -- Don't run xrandr if config empty
+    if xrandrOpts:len() == 0 then
+        return false
     end
     if xrandrOpts then
-        setupScreen(xrandrOpts)
+        return setupScreen(xrandrOpts)
     end
 end
 
 local function disableOutput(out, changedCard)
 	local xrandrOut = getXrandrOutput(out, changedCard)
 	local screenId = getScreenId(out)
-    performConfiguredAction(screenId, 'disconnected', xrandrOut)
-    naughty.notify({ text='Output ' .. xrandrOut .. ' disconnected' })
+    return performConfiguredAction(screenId, 'disconnected', xrandrOut)
 end
 
 local function enableOutput(out, changedCard)
 	local xrandrOut = getXrandrOutput(out, changedCard)
 	local screenId = getScreenId(out)
-    performConfiguredAction(screenId, 'connected', xrandrOut)
+    return performConfiguredAction(screenId, 'connected', xrandrOut)
 end
 
 function updateScreens(changedCard)
@@ -194,17 +199,29 @@ function updateScreens(changedCard)
     log("Update screens: " .. changedCard)
 
 	for out in pairs(mergedOutputs) do
+        local changeCfg
 		if not outputs[out] then -- connected
             log("enable output: " .. out)
-			enableOutput(out, changedCard)
+			changeCfg = enableOutput(out, changedCard)
+            if not changeCfg then
+                newOutputs[out] = nil
+            end
 		elseif not newOutputs[out] then -- disconnected
             log("disable output: " .. out)
-			disableOutput(out, changedCard)
+			changeCfg = disableOutput(out, changedCard)
 		end
+        if changeCfg then
+            mergedOutputs[out] = nil
+        end
 	end
-	outputs = newOutputs
 
     -- reinit awesome
+    -- all code after restart don't be execute
+    log("restart awesomewm")
+    log("=================================================")
+    log("")
+    log("")
+    log("")
     awesome.restart()
 end
 
