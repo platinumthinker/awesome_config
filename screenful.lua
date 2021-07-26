@@ -206,13 +206,5 @@ function updateScreens(changedCard)
 
     -- reinit awesome
     awesome.restart()
-
-    -- set wallpaper
-    local handle = io.popen('feh --bg-scale ' .. wallpaper)
-    local result = handle:read("*a")
-    handle:close()
-    log("res from feh: ")
-    log(result)
-    log("========")
 end
 
