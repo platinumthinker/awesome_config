@@ -16,12 +16,12 @@ outputMapping = {
 }
 
 screens = {
-    ['2088484784921'] = { -- Home DELL 2k monitor, left
+    ['2088484784921'] = { -- Home DELL 2k monitor, left (DP3)
         ['connected'] = function (xrandrOutput, count)
             local currentOut = '--output ' .. xrandrOutput .. ' --mode 2560x1440'
             local disablePrime = '--output ' .. defaultOutput .. ' --off'
             if count > 2 then
-                return disablePrime .. ' ' .. currentOut .. ' --primary --left-of DP3'
+                return disablePrime .. ' ' .. currentOut .. ' --right-of DP2'
             else
                 return currentOut .. ' --left-of ' .. defaultOutput .. ' --primary'
             end
@@ -33,10 +33,15 @@ screens = {
 			return nil
 		end
     },
-  	['2088490884821'] = { -- Home DELL 2k monitor, right
+  	['2088490884821'] = { -- Home DELL 2k monitor, right (DP2)
   		['connected'] = function (xrandrOutput, count)
-            local currentOut = '--output ' .. xrandrOutput .. ' --mode 2560x1440'
-            return currentOut .. ' --left-of ' .. defaultOutput
+            local currentOut = '--output ' .. xrandrOutput .. ' --primary --mode 2560x1440'
+            if count > 2 then
+                local disablePrime = '--output ' .. defaultOutput .. ' --off'
+                return disablePrime .. ' ' .. currentOut .. ' --left-of ' .. defaultOutput
+            else
+                return currentOut .. ' --left-of ' .. defaultOutput
+            end
   		end,
   		['disconnected'] = function (xrandrOutput, count)
   			if xrandrOutput ~= defaultOutput then

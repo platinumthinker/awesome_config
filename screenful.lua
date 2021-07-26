@@ -138,8 +138,8 @@ end
 
 local function setupScreen(xrandrParams)
     log('execute xrandr ' .. xrandrParams)
-    local handle = io.popen('xrandr ' .. xrandrParams)
-    local result = handle:read("*a")
+    local handle = io.popen('xrandr ' .. xrandrParams .. ' 2>&1', 'r')
+    local result = handle:read("*all")
     handle:close()
     log('results: ' .. result)
 	-- os.execute('xrandr ' .. xrandrParams)
