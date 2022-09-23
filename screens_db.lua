@@ -57,7 +57,7 @@ screens = {
             if count > 2 then
                 return disablePrime .. ' ' .. currentOut .. ' --primary --left-of HDMI2'
             else
-                return currentOut .. ' --left-of ' .. defaultOutput .. ' --primary'
+                return currentOut .. ' --right-of ' .. defaultOutput .. ' --primary'
             end
         end,
         ['disconnected'] = function (xrandrOutput, count)
@@ -97,3 +97,17 @@ screens = {
 		end
 	},
 }
+--	['64000012'] = { -- /sys/class/drm/card0/card0-LVDS-1
+--		['connected'] = function (xrandrOutput, outputCount)
+--			if xrandrOutput ~= defaultOutput then
+--				return '--output ' .. xrandrOutput .. ' --auto --same-as ' .. defaultOutput
+--			end
+--			return nil
+--		end,
+--		['disconnected'] = function (xrandrOutput, outputsCount)
+--			if xrandrOutput ~= defaultOutput then
+--			return '--output ' .. xrandrOutput .. ' --off --output ' .. defaultOutput .. ' --auto'
+--			end
+--			return nil
+--		end
+--	}

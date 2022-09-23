@@ -53,6 +53,8 @@ awful.rules.rules = {
             "Pidgin",
             "firefox",
             "Firefox-esr",
+            "Nightly",
+            "Navigator",
             "iceweasel",
             "chrome",
             "chromium",
@@ -78,6 +80,8 @@ awful.rules.rules = {
       }, properties = { tag = "1:im", screen = 1 }
     },
     { rule = { class = "firefox" },
+      properties = { tag = "2:www", screen = 1 } },
+    { rule = { class = "Nightly" },
       properties = { tag = "2:www", screen = 1 } },
     { rule = { class = "chrome" },
       properties = { tag = "2:www", screen = 1 } },

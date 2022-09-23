@@ -11,7 +11,7 @@ local dpi = xresources.apply_dpi
 -- {{{ Main
 theme = {}
 theme.default_themes_path = "/usr/share/awesome/themes"
-theme.wallpaper_cmd = { "awsetbg " .. awful.util.getdir("config") .. "/wallpaper.png" }
+theme.wallpaper_cmd = { "awsetbg " .. awful.util.getdir("config") .. "/wallpaper1.png" }
 theme.colors = {}
 theme.colors.base3   = "#002b36ff"
 theme.colors.base2   = "#073642ff"

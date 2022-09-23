@@ -16,7 +16,7 @@ local dev = '/sys/class/drm/'
 local configPath = awful.util.getdir("config") .. "/screens_db.lua"
 local cardDev = dev .. card
 local outputsCount = 0
-local wallpaperPath = awful.util.getdir("config") .. "/wallpaper.png"
+local wallpaperPath = awful.util.getdir("config") .. "/wallpaper1.png"
 
 local function log(text)
 	local log = io.open('/tmp/awesomewm-widget-screenful.error.log', 'a+')
@@ -214,6 +214,8 @@ function updateScreens(changedCard)
             mergedOutputs[out] = nil
         end
 	end
+
+    os.execute("feh --bg-scale " .. wallpaperPath)
 
     -- reinit awesome
     -- all code after restart don't be execute

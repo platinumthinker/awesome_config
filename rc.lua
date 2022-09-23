@@ -1,5 +1,5 @@
 -- Standard awesome library
-local gears = require("gears")
+gears = require("gears")
 local awful = require("awful")
 require("awful.autofocus")
 -- -- Widget and layout library
@@ -8,6 +8,8 @@ local wibox = require("wibox")
 local beautiful = require("beautiful")
 -- Notification library
 local naughty = require("naughty")
+-- Per-window keyboard layout switcher
+local awpwkb = require("modules/awpwkb")
 
 require("awful.remote")
 require("screenful")
@@ -87,7 +89,7 @@ require("layouts")
 require("menu")
 require("widgets")
 
--- Set keys
+-- {{{ Set keys
 require("bindings")
 root.keys(globalkeys)
 -- }}}
@@ -102,6 +104,9 @@ root.buttons(awful.util.table.join(
 
 require("rules")
 
+awpwkb.init({
+    default_layout = "en",
+})
 
 -- {{{ Signals
 -- Signal function to execute when a new client appears.
