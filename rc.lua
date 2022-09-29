@@ -48,41 +48,24 @@ do
 end
 -- }}}
 
--- {{{ Variable definitions
--- Themes define colours, icons, font and wallpapers.
+-- {{{ Themes define colours, icons, font and wallpapers.
 beautiful.init( awful.util.getdir("config") ..
     "/themes/awesome-solarized-light/theme.lua" )
+-- }}}
 
--- Theme for notifications
+-- {{{ Theme for notifications
 beautiful.notification_border_color = "#002b36ff"
 beautiful.gap_single_client = false
+-- }}}
 
--- This is used later as the default terminal and editor to run.
+-- {{{ This is used later as the default terminal and editor to run.
 terminal = "xfce4-terminal"
 editor = os.getenv("EDITOR") or "editor"
 editor_cmd = terminal .. " -e " .. editor
-
--- However, you can use another modifier like Mod1, but it may interact with others.
-modkey = "Mod4"
-
--- {{{ Helper functions
--- local function client_menu_toggle_fn()
---     local instance = nil
-
---     return function ()
---         if instance and instance.wibox.visible then
---             instance:hide()
---             instance = nil
---         else
---             instance = awful.menu.clients({ theme = { width = 250 } })
---         end
---     end
--- end
 -- }}}
 
-
--- Menubar configuration
--- menubar.utils.terminal = terminal -- Set the terminal for applications that require it
+-- {{{ However, you can use another modifier like Mod1, but it may interact with others.
+modkey = "Mod4"
 -- }}}
 
 require("layouts")
