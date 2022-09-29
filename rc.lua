@@ -160,3 +160,18 @@ end)
 client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 -- }}}
+
+-- Watch the focused screen and move the systray there
+local focused_screen = awful.screen.focused()
+wibox.widget.systray().set_screen(focused_screen)
+gears.timer {
+    timeout = 1.0,
+    call_now = true,
+    autostart = true,
+    callback = function()
+        if focused_screen.index ~= awful.screen.focused().index then
+            focused_screen = awful.screen.focused()
+            wibox.widget.systray().set_screen(focused_screen)
+        end
+    end
+}

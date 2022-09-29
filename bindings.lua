@@ -1,4 +1,6 @@
 local awful = require("awful")
+-- Widget and layout library
+local wibox = require("wibox")
 local hotkeys_popup = require("awful.hotkeys_popup").widget
 
 -- {{{ Key bindings
@@ -33,7 +35,7 @@ globalkeys = awful.util.table.join(
         function () awful.client.swap.byidx( -1)    end,
               {description = "swap with previous client by index", group = "client"}),
     awful.key({ modkey, "Control" }, "j",
-        function () awful.screen.focus_relative( 1) end,
+        function () awful.screen.focus_relative(1) end,
               {description = "focus the next screen", group = "screen"}),
     awful.key({ modkey, "Control" }, "k",
         function () awful.screen.focus_relative(-1) end,
