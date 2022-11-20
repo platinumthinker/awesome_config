@@ -17,7 +17,6 @@ require("screenful")
 -- naughty.config.presets.presets.low.timeout = 5 * 60
 -- Default timeout for notification msgs
 naughty.config.defaults.timeout = 300
-naughty.config.defaults.screen = 1
 naughty.config.defaults.border_width = 5
 naughty.config.padding = 7
 naughty.config.spacing = 7

@@ -4,10 +4,6 @@ local beautiful = require("beautiful")
 awful.widget.tasklist = require("awful.widget.tasklist")
 local wibox = require("wibox")
 
--- Grab environment we need
-local capi = { screen = screen,
-               client = client }
-
 -- {{{ Wibar
 -- Create a textclock widget
 mytextclock = wibox.widget.textclock()

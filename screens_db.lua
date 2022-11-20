@@ -1,5 +1,3 @@
-local naughty = require("naughty")
-
 local defaultOutput = 'LVDS1'
 
 outputMapping = {
@@ -50,14 +48,14 @@ screens = {
             return nil
   		end
   	},
-    ['2408376716826'] = { -- DELL FullHD monitor on work place, left
+    ['2408376716826'] = { -- DELL FullHD monitor on work place, right
         ['connected'] = function (xrandrOutput, count)
             local currentOut = '--output ' .. xrandrOutput .. ' --mode 1920x1080'
             local disablePrime = '--output ' .. defaultOutput .. ' --off'
             if count > 2 then
                 return disablePrime .. ' ' .. currentOut .. ' --left-of HDMI2'
             else
-                return currentOut .. ' --right-of ' .. defaultOutput
+                return currentOut .. ' --left-of ' .. defaultOutput
             end
         end,
         ['disconnected'] = function (xrandrOutput, count)
@@ -67,10 +65,10 @@ screens = {
             return nil
         end
     },
-    ['2408367846726'] = { -- DELL FullHD monitor on work place, right
+    ['2408367846726'] = { -- DELL FullHD monitor on work place, left
         ['connected'] = function (xrandrOutput, count)
             local currentOut = '--output ' .. xrandrOutput .. ' --mode 1920x1080'
-            return currentOut .. ' --left-of ' .. defaultOutput .. '--primary'
+            return currentOut .. ' --right-of ' .. defaultOutput .. '--primary'
         end,
         ['disconnected'] = function (xrandrOutput, count)
             if xrandrOutput ~= defaultOutput then

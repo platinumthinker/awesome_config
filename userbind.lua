@@ -25,9 +25,11 @@ globalkeys = awful.util.table.join(globalkeys,
     awful.key({ modkey,         }, "b",
         function () awful.spawn("slock") end,
         {description="lock PC", group = "user"}),
-    awful.key({ modkey,         }, "p",
-        function () naughty.toggle() end,
-        {description="toggle notifications", group = "user"}),
+    awful.key({ modkey, "Shift" }, "p",
+        function ()
+            naughty.toggle()
+        end,
+        {description="kill first notification", group = "user"}),
     awful.key({ modkey,         }, "a",
         function () awful.spawn("sh -c 'CM_LAUNCHER=rofi clipmenu'") end,
         {description="clipboard manager", group = "user"})
