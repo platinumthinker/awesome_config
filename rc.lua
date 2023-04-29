@@ -1,5 +1,5 @@
 -- Standard awesome library
-gears = require("gears")
+local gears = require("gears")
 local awful = require("awful")
 require("awful.autofocus")
 -- -- Widget and layout library
@@ -12,7 +12,7 @@ local naughty = require("naughty")
 local awpwkb = require("modules/awpwkb")
 
 require("awful.remote")
-require("screenful")
+-- require("screenful")
 
 -- naughty.config.presets.presets.low.timeout = 5 * 60
 -- Default timeout for notification msgs

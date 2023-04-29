@@ -1,4 +1,4 @@
-local defaultOutput = 'LVDS1'
+local defaultOutput = 'eDP1'
 
 outputMapping = {
     ['DP-1'] = 'DP1',
@@ -10,50 +10,51 @@ outputMapping = {
     ['HDMI-A-2'] = 'HDMI2',
     ['HDMI-A-3'] = 'HDMI3',
     ['eDP-1'] = 'eDP1',
-    ['eDP-2'] = 'eDP2'
+    ['eDP-2'] = 'eDP2',
+    -- ['DP-4'] = 'DP1-2',
+    -- ['DP-5'] = 'DP1-3',
 }
 
 screens = {
     ['2088484784921'] = { -- Home DELL 2k monitor, left (DP3)
         ['connected'] = function (xrandrOutput, count)
-            local currentOut = '--output ' .. xrandrOutput .. ' --mode 2560x1440'
+            local currentOut = '--output ' .. xrandrOutput .. ' --mode 1920x1080'
             local disablePrime = '--output ' .. defaultOutput .. ' --off'
             if count > 2 then
-                return disablePrime .. ' ' .. currentOut .. ' --right-of DP2'
+                return disablePrime
             else
                 return currentOut .. ' --left-of ' .. defaultOutput .. ' --primary'
             end
         end,
-		['disconnected'] = function (xrandrOutput, count)
+        ['disconnected'] = function (xrandrOutput, count)
             if xrandrOutput ~= defaultOutput then
                 return '--output ' .. xrandrOutput .. ' --off --output ' .. defaultOutput .. ' --auto'
 			end
 			return nil
 		end
     },
-  	['2088490884821'] = { -- Home DELL 2k monitor, right (DP2)
-  		['connected'] = function (xrandrOutput, count)
-            local currentOut = '--output ' .. xrandrOutput .. ' --primary --mode 2560x1440'
+    ['2088490884821'] = { -- Home DELL 2k monitor, right (DP2)
+        ['connected'] = function (xrandrOutput, count)
+            local currentOut = '--output ' .. xrandrOutput .. ' --primary --mode 1920x1080'
             if count > 2 then
-                local disablePrime = '--output ' .. defaultOutput .. ' --off'
-                return disablePrime .. ' ' .. currentOut .. ' --left-of ' .. defaultOutput
+                return disablePrime
             else
                 return currentOut .. ' --left-of ' .. defaultOutput
             end
-  		end,
-  		['disconnected'] = function (xrandrOutput, count)
-  			if xrandrOutput ~= defaultOutput then
+        end,
+        ['disconnected'] = function (xrandrOutput, count)
+            if xrandrOutput ~= defaultOutput then
                 return '--output ' .. xrandrOutput .. ' --off --output ' .. defaultOutput .. ' --auto'
-  			end
+            end
             return nil
-  		end
-  	},
+        end
+    },
     ['2408376716826'] = { -- DELL FullHD monitor on work place, right
         ['connected'] = function (xrandrOutput, count)
             local currentOut = '--output ' .. xrandrOutput .. ' --mode 1920x1080'
             local disablePrime = '--output ' .. defaultOutput .. ' --off'
             if count > 2 then
-                return disablePrime .. ' ' .. currentOut .. ' --left-of HDMI2'
+                return disablePrime .. ' ' .. currentOut .. ' --left-of DP1-3'
             else
                 return currentOut .. ' --left-of ' .. defaultOutput
             end
@@ -95,17 +96,3 @@ screens = {
 		end
 	},
 }
---	['64000012'] = { -- /sys/class/drm/card0/card0-LVDS-1
---		['connected'] = function (xrandrOutput, outputCount)
---			if xrandrOutput ~= defaultOutput then
---				return '--output ' .. xrandrOutput .. ' --auto --same-as ' .. defaultOutput
---			end
---			return nil
---		end,
---		['disconnected'] = function (xrandrOutput, outputsCount)
---			if xrandrOutput ~= defaultOutput then
---			return '--output ' .. xrandrOutput .. ' --off --output ' .. defaultOutput .. ' --auto'
---			end
---			return nil
---		end
---	}

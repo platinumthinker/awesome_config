@@ -8,7 +8,7 @@ local awful = require("awful")
 local screen = require("awful.screen")
 local io = require("io")
 local os = require("os")
-local awesome = awesome
+-- local awesome = awesome
 require('screens_db')
 
 local card = 'card0'
@@ -19,10 +19,10 @@ local outputsCount = 0
 local wallpaperPath = awful.util.getdir("config") .. "/wallpaper1.png"
 
 local function log(text)
-	local log = io.open('/tmp/awesomewm-widget-screenful.error.log', 'a+')
-	log:write(text .. "\n")
-	log:flush()
-	log:close()
+	local logFile = io.open('/tmp/awesomewm-widget-screenful.error.log', 'a+')
+	logFile:write(text .. "\n")
+	logFile:flush()
+	logFile:close()
 end
 
 local function isOutputConnected(path)
@@ -32,9 +32,9 @@ local function isOutputConnected(path)
 	return 'connected\n' == value
 end
 
-local function connectedOutputs(path, card)
+local function connectedOutputs(path, cardOutput)
 	local result = {}
-	local outputs = io.popen('ls -1 -d ' .. path .. '/' .. card .. '-*')
+	local outputs = io.popen('ls -1 -d ' .. path .. '/' .. cardOutput .. '-*')
     outputsCount = 0
 	while true do
 		local output = outputs:read('*line')
@@ -198,12 +198,15 @@ function updateScreens(changedCard)
 	local mergedOutputs = mergeTables(outputs, newOutputs)
     log("Update screens: " .. changedCard)
 
+    local changedConfig = false
 	for out in pairs(mergedOutputs) do
         local changeCfg
 		if not outputs[out] then -- connected
             log("enable output: " .. out)
 			changeCfg = enableOutput(out, changedCard)
-            if not changeCfg then
+            if changeCfg then
+                changedConfig = true
+            else
                 newOutputs[out] = nil
             end
 		elseif not newOutputs[out] then -- disconnected
@@ -211,19 +214,22 @@ function updateScreens(changedCard)
 			changeCfg = disableOutput(out, changedCard)
 		end
         if changeCfg then
+            changedConfig = true
             mergedOutputs[out] = nil
         end
 	end
 
-    os.execute("feh --bg-scale " .. wallpaperPath)
+    if changedConfig == true then
+        os.execute("feh --bg-scale /home/ate/.config/awesome/wallpaper2.png")
 
-    -- reinit awesome
-    -- all code after restart don't be execute
-    log("restart awesomewm")
-    log("=================================================")
-    log("")
-    log("")
-    log("")
-    awesome.restart()
+        -- reinit awesome
+        -- all code after restart don't be execute
+        log("restart awesomewm")
+        log("=================================================")
+        log("")
+        log("")
+        log("")
+        awesome.restart()
+    end
 end
 
